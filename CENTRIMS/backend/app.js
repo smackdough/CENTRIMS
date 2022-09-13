@@ -63,7 +63,7 @@ app.delete('/category/:categoryId', (req, res) => {
 /*****************************************Question Endpoints*****************************************/
 
 app.get('/category/:categoryId/questions', (req, res)=> {
-    Question.find({})
+    Question.find({_categoryId: req.params.categoryId})
         .then(question => res.send(question))
         .catch((err) => console.log(err));
 })
