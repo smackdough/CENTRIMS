@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const mongoose = require ('./db/mongoose');
-const Category = require ('./db/models/category');
-const Customer = require ('./db/models/customer');
-const Question = require ('./db/models/question');
+const Category = require ('./db/models/category.model.');
+const Customer = require ('./db/models/customer.model');
+const Question = require ('./db/models/question.model');
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -13,7 +13,15 @@ app.use((req, res, next) => {
     next();
 })
 
-/*Category Endpoints*/
+/*const categoryRoute = require ('./db/routes/category');
+const customerRoute = require ('./db/routes/customer');
+const questionRoute = require ('./db/routes/question');
+
+app.use('/category', categoryRoute);
+app.use('/question', questionRoute);
+app.use('/customer', customerRoute);*/
+
+/*****************************************Category Endpoints*****************************************/
 
 app.get('/category', (req, res)=> {
     Category.find({})
@@ -52,7 +60,7 @@ app.delete('/category/:categoryId', (req, res) => {
     res.send(category);
 })
 
-/*Question Endpoints*/
+/*****************************************Question Endpoints*****************************************/
 
 app.get('/category/:categoryId/questions', (req, res)=> {
     Question.find({})
