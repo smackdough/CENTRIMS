@@ -1,0 +1,24 @@
+<div class="centered-container">
+    <div class="question-manager-container">
+        <div class="sidebar">
+            <h1 class="title has-text-primary">Category</h1>
+            <div class="list-menu">
+                
+                <a href="#" class="list-menu-item is-active" *ngFor = "let cat of categories">
+                    <p class="white-text">{{cat.title}}
+                        <span class="pull-right task-delete btn-rounded-corners">X</span>
+                    </p>   
+                </a>
+            </div>
+            <button class="btn btn-primary btn-rounded-corners">Add Category</button>
+        </div>
+        <div class="question-list-container">
+            <h1 class="title has-text-primary">Questions</h1>
+            <div class="question" *ngFor="let q of questions">
+                <p class="white-text">{{q.title}}
+                    <span class="pull-right task-delete btn-rounded-corners">X</span>
+                </p>  
+            </div>
+        </div>
+    </div>
+</div>
