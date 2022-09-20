@@ -25,7 +25,7 @@ export class QuestionsService {
   }
 
   createQuestion(categoryId: string, title: string){
-    return this.webService.post(`category/${categoryId}/questions`, title);
+    return this.webService.post(`category/${categoryId}/questions`, {title});
   }
 
   deleteQuestion(questionId: string){

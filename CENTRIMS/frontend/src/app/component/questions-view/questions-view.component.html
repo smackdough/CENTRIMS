@@ -4,21 +4,22 @@
             <h1 class="title has-text-primary">Category</h1>
             <div class="list-menu">
                 
-                <a href="#" class="list-menu-item is-active" *ngFor = "let cat of categories">
+                <a class="list-menu-item" *ngFor = "let cat of categories" [routerLink] = "['/category', cat._id]" routerLinkActive = "is-active">
                     <p class="white-text">{{cat.title}}
-                        <span class="pull-right task-delete btn-rounded-corners">X</span>
+                        <span class="pull-right task-delete btn-rounded-corners" (click)="deleteCategory(cat)">X</span>
                     </p>   
                 </a>
             </div>
-            <button class="btn btn-primary btn-rounded-corners">Add Category</button>
+            <button class="btn btn-primary btn-rounded-corners" routerLink="/category-form">Add Category</button>
         </div>
         <div class="question-list-container">
             <h1 class="title has-text-primary">Questions</h1>
             <div class="question" *ngFor="let q of questions">
                 <p class="white-text">{{q.title}}
-                    <span class="pull-right task-delete btn-rounded-corners">X</span>
+                    <span class="pull-right task-delete btn-rounded-corners" (click)="deleteQuestion(q)">X</span>
                 </p>  
             </div>
+            <button class="btn btn-primary add-button" (click)="addNewQuestion()">Add Questions</button>
         </div>
     </div>
 </div>
