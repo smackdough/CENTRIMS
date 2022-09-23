@@ -7,18 +7,23 @@ import { AppComponent } from './app.component';
 import { QuestionsViewComponent } from './component/questions-view/questions-view.component';
 import { CategoryFormComponent } from './component/category-form/category-form.component';
 import { QuestionFormComponent } from './component/question-form/question-form.component';
+import { UserViewComponent } from './component/user-view/user-view.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionsViewComponent,
     CategoryFormComponent,
-    QuestionFormComponent
+    QuestionFormComponent,
+    UserViewComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

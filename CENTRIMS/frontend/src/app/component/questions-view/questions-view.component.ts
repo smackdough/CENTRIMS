@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import Category from 'src/app/models/category';
 import Question from 'src/app/models/question';
 import { QuestionsService } from 'src/app/services/questions.service';
@@ -32,7 +32,10 @@ export class QuestionsViewComponent implements OnInit {
   }
 
   deleteQuestion(question: Question) { this.questionService.deleteQuestion(question._id).subscribe((question: any)=> this.questions = this.questions.filter(q => q._id != question._id)) };
-  deleteCategory(category: Category) {this.questionService.deleteCategory(category._id).subscribe(()=> this.categories = this.categories.filter(c => c._id != category._id)) };
+  deleteCategory(category: Category) {
+    this.questionService.deleteCategory(category._id).subscribe(()=> this.categories = this.categories.filter(c => c._id != category._id));
+    window.location.reload(); 
+  };
   addNewQuestion(){
     if(!this.categoryId){
       alert("Please select a category to add a question");
