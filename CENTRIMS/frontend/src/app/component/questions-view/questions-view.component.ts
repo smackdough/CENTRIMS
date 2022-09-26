@@ -34,6 +34,7 @@ export class QuestionsViewComponent implements OnInit {
   deleteQuestion(question: Question) { this.questionService.deleteQuestion(question._id).subscribe((question: any)=> this.questions = this.questions.filter(q => q._id != question._id)) };
   deleteCategory(category: Category) {
     this.questionService.deleteCategory(category._id).subscribe(()=> this.categories = this.categories.filter(c => c._id != category._id));
+    alert("Are you sure you want to delete this category?");
     window.location.reload(); 
   };
   addNewQuestion(){

@@ -1,3 +1,16 @@
+<div class="logo">
+    <img src="assets\images\centrims_logo.jpg" alt="">
+</div>
+<div class="row drop-down" >
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle>Select Language</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="btn btn-primary" ngbDropdownItem  *ngFor="let cat of categories" (click)="languageClick(cat.title)">{{cat.title}}</button>
+        </div>
+      </div>
+    </div>
+</div>
 <div class="centered-content">
     <div class="modal-box">
         <div>
@@ -8,57 +21,23 @@
             </div>
             <div class="question-box" *ngIf="questions.length>0">
                 <h5  *ngIf="questions[questionIndex]">{{questions[questionIndex].title}}
-                </h5>  
-            </div>
+                </h5>
+            </div><br>
             
             <div class="displayFlex row ">
-                <div class="col-sm-3">
+                <div  class="col-sm-3">
                     <div class="row">
                         <div class="col-sm-12 center-el">
-                            <input type="radio" value="strongly agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Strongly Agree')">
+                            <input type="radio" value="strongly disagree" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Strongly Disagree')">
                         </div>
                         <div class="col-sm-12 center-el">
                             <label class="radio-inline">
-                                Strongly Agree
+                                Strongly Disagree
                             </label>
                         </div>
                         <div class="col-sm-12 center-el">
                             <label class="radio-inline">
-                                🙂
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="row">
-                        <div class="col-sm-12 center-el">
-                            <input type="radio" value="agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Agree')">
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                Agree
-                            </label>
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                🙂
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div  class="col-sm-2">
-                    <div class="row">
-                        <div class="col-sm-12 center-el">
-                            <input type="radio" value="neutral" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Neutral')">
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                Neutral
-                            </label>
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                😐
+                                😩
                             </label>
                         </div>
                     </div>
@@ -80,19 +59,54 @@
                         </div>
                     </div>
                 </div>
-                <div  class="col-sm-3">
+                
+                <div  class="col-sm-2">
                     <div class="row">
                         <div class="col-sm-12 center-el">
-                            <input type="radio" value="strongly disagree" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Strongly Disagree')">
+                            <input type="radio" value="neutral" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Neutral')">
                         </div>
                         <div class="col-sm-12 center-el">
                             <label class="radio-inline">
-                                Strongly Disagree
+                                Neutral
                             </label>
                         </div>
                         <div class="col-sm-12 center-el">
                             <label class="radio-inline">
-                                😩
+                                😐
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="row">
+                        <div class="col-sm-12 center-el">
+                            <input type="radio" value="agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Agree')">
+                        </div>
+                        <div class="col-sm-12 center-el">
+                            <label class="radio-inline">
+                                Agree
+                            </label>
+                        </div>
+                        <div class="col-sm-12 center-el">
+                            <label class="radio-inline">
+                                🙂
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-12 center-el">
+                            <input type="radio" value="strongly agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Strongly Agree')">
+                        </div>
+                        <div class="col-sm-12 center-el">
+                            <label class="radio-inline">
+                                Strongly Agree
+                            </label>
+                        </div>
+                        <div class="col-sm-12 center-el">
+                            <label class="radio-inline">
+                                😃
                             </label>
                         </div>
                     </div>

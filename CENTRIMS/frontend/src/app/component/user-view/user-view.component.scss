@@ -22,7 +22,7 @@
 
 .displayFlex {
     display: flex !important;
-    background-color: green;
+    background-color: #2D804E;
     border-radius: 10px;
     padding: 20px;
 }
@@ -43,5 +43,21 @@
 }
 
 .button {
-    background-color: green;
+    background-color: #2D804E;
+}
+
+.drop-down {
+    position: absolute;
+    top: 5%;
+    left: 78%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo {
+    position: absolute;
+    top: 6%;
+    left: 20%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }

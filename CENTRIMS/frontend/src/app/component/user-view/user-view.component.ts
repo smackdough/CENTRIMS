@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Category from 'src/app/models/category';
 import Question from 'src/app/models/question';
 import { QuestionsService } from 'src/app/services/questions.service';
+import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-view',
@@ -20,7 +21,9 @@ export class UserViewComponent implements OnInit {
   responseArray: any=[];
 
   constructor(
-    private questionService: QuestionsService
+    private questionService: QuestionsService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -77,5 +80,10 @@ export class UserViewComponent implements OnInit {
 
     sendResponses(){
       console.log(this.responseArray);
+    }
+
+    languageClick(id: any){
+      console.log(id);
+      this.router.navigateByUrl('/user/id');
     }
 }
