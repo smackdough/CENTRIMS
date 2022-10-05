@@ -12,6 +12,20 @@
             </div>
             <button class="btn btn-primary add-button" routerLink="/category-form">Add Category</button>
         </div>
+        
+        <div class="domainSidebar">
+            <h1 class="has-text-primary white-text">Domain</h1>
+            <div class="list-menu">
+                <div class="list-menu-item" *ngFor = "let d of domains">
+                    <p class="white-text">
+                        {{d.title}}
+                        <span class="pull-right task-delete btn-rounded-corners" (click)="deleteDomain(d)">X</span>
+                    </p>
+                </div>                
+            </div>
+            <button class="btn btn-primary add-button" (click)="addNewDomain()">Add Domain</button>
+        </div>        
+
         <div class="question-list-container">
             <h1 class="has-text-primary white-text">Questions</h1>
             <div class="question" *ngFor="let q of questions">

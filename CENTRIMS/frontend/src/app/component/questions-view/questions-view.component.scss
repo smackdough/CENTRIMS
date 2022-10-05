@@ -7,8 +7,8 @@
     margin-top: 5%;
     width:100%;
     height:100%;
-    max-width:900px;
-    max-height:500px;
+    max-width:1215px;
+    max-height:700px;
 }
 
 .sidebar {
@@ -16,9 +16,19 @@
     flex-direction: column;
     width: 250px;
     height:500px;
-    background: #201d1d;
+    background: #302c2c;
     padding: 42px;
     border-radius: 8px 0px 0px 8px;
+}
+
+.domainSidebar {
+    display:flex;
+    flex-direction: column;
+    width: 300px;
+    height:500px;
+    background: #201d1d;
+    padding: 42px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 .question-list-container {

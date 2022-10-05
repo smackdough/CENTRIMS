@@ -31,4 +31,16 @@ export class QuestionsService {
   deleteQuestion(questionId: string){
     return this.webService.delete(`questions/${questionId}/`);
   } 
+
+  getDomain(categoryId: string){
+    return this.webService.get(`category/${categoryId}/domains`);
+  }
+
+  createDomain(categoryId: string, title: string){
+    return this.webService.post(`category/${categoryId}/domains`, {title});
+  }
+
+  deleteDomain(domainId: string){
+    return this.webService.delete(`domains/${domainId}/`);
+  } 
 }

@@ -4,6 +4,7 @@ const mongoose = require ('./db/mongoose');
 const Category = require ('./db/models/category.model.');
 const Customer = require ('./db/models/customer.model');
 const Question = require ('./db/models/question.model');
+const Domain   = require ('./db/models/domain.model');
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -95,6 +96,39 @@ app.patch('/questions/:questionId', (req, res) => {
 app.delete('/questions/:questionId', (req, res) => {
     Question.findByIdAndDelete(req.params.questionId)
         .then(question => res.send(question))
+        .catch((err) => console.log(err));
+})
+
+/*****************************************Domain Endpoints*****************************************/
+
+app.get('/category/:categoryId/domains', (req, res)=> {
+    Domain.find({_categoryId: req.params.categoryId})
+        .then(domain => res.send(domain))
+        .catch((err) => console.log(err));
+})
+
+app.get('/domains/:domainId', (req, res) => {
+    Domain.findOne({_id: req.params.domainId})
+        .then(domain => res.send(domain))
+        .catch((err) => console.log(err));
+})
+
+app.post('/category/:categoryId/domains', (req, res) => {
+    (new Domain({'title': req.body.title, '_categoryId': req.params.categoryId}))
+        .save()
+        .then((domain) => res.send(domain))
+        .catch((err) => console.log(err));
+})
+
+app.patch('/domains/:domainId', (req, res) => {
+    Domain.findOneAndUpdate({'_id': req.params.domainId}, { $set: req.body })
+        .then(domain => res.send(domain))
+        .catch((err) => console.log(err));
+})
+
+app.delete('/domains/:domainId', (req, res) => {
+    Domain.findByIdAndDelete(req.params.domainId)
+        .then(domain => res.send(domain))
         .catch((err) => console.log(err));
 })
 
