@@ -1,0 +1,39 @@
+<div class="centered-container">
+    <div class="question-manager-container">
+        <div class="sidebar">
+            <h1 class="has-text-primary white-text">Category</h1>
+            <div class="list-menu">
+                
+                <a class="list-menu-item" *ngFor = "let cat of categories" [routerLink] = "['/category', cat._id]" routerLinkActive = "is-active">
+                    <p class="white-text">{{cat.title}}
+                        <span class="pull-right task-delete btn-rounded-corners" (click)="deleteCategory(cat)">X</span>
+                    </p>   
+                </a>
+            </div>
+            <button class="btn btn-primary add-button" routerLink="/category-form">Add Category</button>
+        </div>
+        
+        <div class="domainSidebar">
+            <h1 class="has-text-primary white-text">Domain</h1>
+            <div class="list-menu">
+                <div class="list-menu-item" *ngFor = "let d of domains">
+                    <p class="white-text">
+                        {{d.title}}
+                        <span class="pull-right task-delete btn-rounded-corners" (click)="deleteDomain(d)">X</span>
+                    </p>
+                </div>                
+            </div>
+            <button class="btn btn-primary add-button" (click)="addNewDomain()">Add Domain</button>
+        </div>        
+
+        <div class="question-list-container">
+            <h1 class="has-text-primary white-text">Questions</h1>
+            <div class="question" *ngFor="let q of questions">
+                <p class="white-text">{{q.title}}
+                    <span class="pull-right task-delete btn-rounded-corners" (click)="deleteQuestion(q)">X</span>
+                </p>  
+            </div>
+            <button class="btn btn-primary add-button" (click)="addNewQuestion()">Add Questions</button>
+        </div>
+    </div>
+</div>
