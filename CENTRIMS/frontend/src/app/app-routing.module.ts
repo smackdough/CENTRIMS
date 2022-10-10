@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'category', pathMatch: 'full' },
   { path: 'category', component: QuestionsViewComponent },
   { path: 'category/:categoryId', component: QuestionsViewComponent },
+  { path: 'domain/:categoryId', component: QuestionsViewComponent },
   { path: 'category-form', component: CategoryFormComponent },
   { path: 'category/:categoryId/question-form', component: QuestionFormComponent },
   { path: 'category/:categoryId/domain-form', component: DomainFormComponent},

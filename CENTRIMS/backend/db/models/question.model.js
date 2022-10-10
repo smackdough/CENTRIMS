@@ -5,7 +5,7 @@ const QuestionSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    _categoryId: {
+    _domainId:{
         type: mongoose.Types.ObjectId,
         required: true
     }

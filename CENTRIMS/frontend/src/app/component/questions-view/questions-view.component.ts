@@ -15,6 +15,7 @@ export class QuestionsViewComponent implements OnInit {
   questions: Question[] = [];
   domains: Domain[] = [];
   categoryId: string;
+  domainId: string;
 
   constructor(
     private questionService: QuestionsService,
@@ -28,6 +29,7 @@ export class QuestionsViewComponent implements OnInit {
 
     this.route.params.subscribe((params: any) => {
       this.categoryId = params.categoryId;
+      this.domainId = params.domainId;
       if(!this.categoryId) return;
       this.questionService.getQuestion(this.categoryId).subscribe((questions: any) => this.questions = questions);
       this.questionService.getDomain(this.categoryId).subscribe((domains: any) => this.domains = domains);
@@ -55,5 +57,10 @@ export class QuestionsViewComponent implements OnInit {
       return;
     }
     this.router.navigate(['./domain-form'], {relativeTo: this.route});
+  }
+
+  languageClick(id: any){
+    console.log(id);
+    this.router.navigateByUrl('/user/id');
   }
 }

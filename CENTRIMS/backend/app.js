@@ -133,3 +133,20 @@ app.delete('/domains/:domainId', (req, res) => {
 })
 
 app.listen(3000, ()=>console.log("Hello Server Connected"));
+
+
+
+/**************************************TESTING**************************/
+
+app.get('/domains/:domainId/questions', (req, res)=> {
+    Question.find({_domainId: req.params.domainId})
+        .then(question => res.send(question))
+        .catch((err) => console.log(err));
+})
+
+app.post('/domains/:domainId/questions', (req, res) => {
+    (new Question({'title': req.body.title, '_domainId': req.params.domainId}))
+        .save()
+        .then((question) => res.send(question))
+        .catch((err) => console.log(err));
+})

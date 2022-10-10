@@ -6,12 +6,11 @@ const QuestionSchema = new mongoose.Schema({
         trim: true, 
         minLength: 3
     },
-    _categoryId: {
+    _domainId:{
         type: mongoose.Types.ObjectId,
         required: true
     }
 });
-
 const Question = mongoose.model('Question', QuestionSchema);
 
 module.exports = Question;
