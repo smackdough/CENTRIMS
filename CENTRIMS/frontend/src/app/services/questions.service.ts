@@ -20,8 +20,8 @@ export class QuestionsService {
     return this.webService.delete(`category/${categoryId}`);
   } 
 
-  getQuestion(categoryId: string){
-    return this.webService.get(`category/${categoryId}/questions`);
+  getQuestion(domainId: string){
+    return this.webService.get(`domains/${domainId}/questions`);
   }
 
   createQuestion(categoryId: string, title: string){

@@ -16,6 +16,7 @@ export class QuestionsViewComponent implements OnInit {
   domains: Domain[] = [];
   categoryId: string;
   domainId: string;
+  tempCategoryIdHolder: string;
 
   constructor(
     private questionService: QuestionsService,
@@ -26,13 +27,24 @@ export class QuestionsViewComponent implements OnInit {
   ngOnInit() {
     this.questionService.getCategory()
       .subscribe((categories: any) => this.categories = categories);
-
     this.route.params.subscribe((params: any) => {
-      this.categoryId = params.categoryId;
-      this.domainId = params.domainId;
-      if(!this.categoryId) return;
-      this.questionService.getQuestion(this.categoryId).subscribe((questions: any) => this.questions = questions);
-      this.questionService.getDomain(this.categoryId).subscribe((domains: any) => this.domains = domains);
+      
+      if (window.location.href.indexOf('category') > 0) {
+        this.categoryId = params.categoryId;
+      }else if(window.location.href.indexOf('domain') > 0) {
+        this.domainId = params.categoryId;
+      }
+      console.log(this.tempCategoryIdHolder+" Temp Cat Holder BEFORE");
+      if(!this.categoryId && !this.domainId) return;
+      console.log(this.categoryId+" Category Id");
+      console.log(this.domainId+" DOmain Id")
+      if(!this.domainId && !this.tempCategoryIdHolder){
+        console.log('inside');
+        this.tempCategoryIdHolder = this.categoryId;
+      }
+      this.questionService.getQuestion(this.domainId).subscribe((questions: any) => this.questions = questions);
+      console.log(this.tempCategoryIdHolder+" Temp Cat Holder AFTER");
+      this.questionService.getDomain(this.tempCategoryIdHolder).subscribe((domains: any) => this.domains = domains);
     });
   }
 
