@@ -26,7 +26,7 @@
         <div class="domainSidebar">
             <h1 class="has-text-primary white-text">Domain</h1>
             <div class="list-menu">
-                <div class="list-menu-item" *ngFor = "let d of domains" [routerLink] = "['/domain', d._id]" routerLinkActive = "is-active">
+                <div class="list-menu-item" *ngFor = "let d of domains" [routerLink] = "['/category/', d._categoryId,'domains', d._id]" routerLinkActive = "is-active">
                     <p class="white-text">
                         {{d.title}}
                         <span class="pull-right task-delete btn-rounded-corners" (click)="deleteDomain(d)">X</span>

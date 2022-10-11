@@ -6,6 +6,10 @@ const QuestionSchema = new mongoose.Schema({
         trim: true, 
         minLength: 3
     },
+    _categoryId:{
+        type: mongoose.Types.ObjectId,
+        required: true
+    },
     _domainId:{
         type: mongoose.Types.ObjectId,
         required: true

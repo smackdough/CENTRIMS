@@ -138,7 +138,7 @@ app.listen(3000, ()=>console.log("Hello Server Connected"));
 
 /**************************************TESTING**************************/
 
-app.get('/domains/:domainId/questions', (req, res)=> {
+app.get('/category/:categoryId/domains/:domainId/questions', (req, res)=> {
     Question.find({_domainId: req.params.domainId})
         .then(question => res.send(question))
         .catch((err) => console.log(err));

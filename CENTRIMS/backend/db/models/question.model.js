@@ -5,6 +5,10 @@ const QuestionSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    _categoryId:{
+        type: mongoose.Types.ObjectId,
+        required: true
+    },
     _domainId:{
         type: mongoose.Types.ObjectId,
         required: true
