@@ -144,7 +144,7 @@ app.get('/category/:categoryId/domains/:domainId/questions', (req, res)=> {
         .catch((err) => console.log(err));
 })
 
-app.post('/domains/:domainId/questions', (req, res) => {
+app.post('/category/:categoryId/domains/:domainId/questions', (req, res) => {
     (new Question({'title': req.body.title, '_domainId': req.params.domainId}))
         .save()
         .then((question) => res.send(question))
