@@ -4,10 +4,12 @@ import { CategoryFormComponent } from './component/category-form/category-form.c
 import { DomainFormComponent } from './component/domain-form/domain-form.component';
 import { QuestionFormComponent } from './component/question-form/question-form.component';
 import { QuestionsViewComponent } from './component/questions-view/questions-view.component';
+import { LoginComponent } from './component/login/login.component';
 // import { UserViewComponent } from './component/user-view/user-view.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'lang', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent},
   { path: 'lang', component: QuestionsViewComponent },
   { path: 'lang/:languageId', component: QuestionsViewComponent },
   { path: 'lang/:languageId/category/:categoryId', component: QuestionsViewComponent },

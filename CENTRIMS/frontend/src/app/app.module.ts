@@ -11,6 +11,7 @@ import { CategoryFormComponent } from './component/category-form/category-form.c
 import { QuestionFormComponent } from './component/question-form/question-form.component';
 // import { UserViewComponent } from './component/user-view/user-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     QuestionsViewComponent,
     CategoryFormComponent,
     QuestionFormComponent,
+    LoginComponent,
     //UserViewComponent,
   ],
   imports: [
