@@ -7,13 +7,14 @@ import { QuestionsViewComponent } from './component/questions-view/questions-vie
 // import { UserViewComponent } from './component/user-view/user-view.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'category', pathMatch: 'full' },
-  { path: 'category', component: QuestionsViewComponent },
-  { path: 'category/:categoryId', component: QuestionsViewComponent },
-  { path: 'category/:categoryId/domains/:domainId', component: QuestionsViewComponent },
-  { path: 'category-form', component: CategoryFormComponent },
-  { path: 'category/:categoryId/question-form', component: QuestionFormComponent },
-  { path: 'category/:categoryId/domain-form', component: DomainFormComponent},
+  { path: '', redirectTo: 'lang', pathMatch: 'full' },
+  { path: 'lang', component: QuestionsViewComponent },
+  { path: 'lang/:languageId', component: QuestionsViewComponent },
+  { path: 'lang/:languageId/category/:categoryId', component: QuestionsViewComponent },
+  { path: 'lang/:languageId/category/:categoryId/domains/:domainId', component: QuestionsViewComponent },
+  { path: 'lang/:languageId/category-form', component: CategoryFormComponent },
+  { path: 'lang/:languageId/category/:categoryId/domains/:domainId/question-form', component: QuestionFormComponent },
+  { path: 'lang/:languageId/category/:categoryId/domain-form', component: DomainFormComponent},
   // { path: 'user/en', component: UserViewComponent}
 ];
 

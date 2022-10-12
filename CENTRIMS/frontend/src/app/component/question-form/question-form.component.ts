@@ -9,20 +9,21 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class QuestionFormComponent implements OnInit {
 
-  categoryId: string;
+  domainId: string;
 
   constructor(
     private questionService: QuestionsService,
     private router: Router,
     private route: ActivatedRoute) { 
-      this.route.params.subscribe((params: any)=> this.categoryId = params.categoryId);
+      this.route.params.subscribe((params: any)=> this.domainId = params.domainId);
     }
 
   ngOnInit(): void {
   }
 
   addQuestion(value: string){
-    this.questionService.createQuestion(this.categoryId, value)
+    console.log(this.domainId + " Domain Id");
+    this.questionService.createQuestion(this.domainId, value)
       .subscribe(()=>this.router.navigate(['../'], {relativeTo: this.route}));
   }
 

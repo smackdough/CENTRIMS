@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const CustomerSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        trim: true
+        trim: true,
+        minLength: 1
     },
     lastName: {
         type: String,

@@ -4,7 +4,11 @@ const CategorySchema = new mongoose.Schema({
     title: {
         type: String,
         trim: true, 
-        minLength: 3
+        minLength: 1
+    },
+    _languageId: {
+        type: mongoose.Types.ObjectId,
+        required: true
     }
 });
 

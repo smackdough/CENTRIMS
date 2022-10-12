@@ -8,24 +8,36 @@ export class QuestionsService {
 
   constructor(private webService: WebService) { }
 
-  getCategory(){
-    return this.webService.get('category')
+  getLanguage(){
+    return this.webService.get('language')
   }
 
-  createCategory(title: string){
-    return this.webService.post("category", {title});
+  getOneLanguageTitle(languageId: string){
+    return this.webService.get(`language/${languageId}`)
+  }
+
+  // getCategory(){
+  //   return this.webService.get('category')
+  // }
+
+  getCategory(languageId: string){
+    return this.webService.get(`${languageId}/category`)
+  }
+
+  createCategory(languageId: string, title: string){
+    return this.webService.post(`${languageId}/category`, {title});
   }
 
   deleteCategory(categoryId: string){
     return this.webService.delete(`category/${categoryId}`);
   } 
 
-  getQuestion(categoryId: string, domainId: string){
-    return this.webService.get(`category/${categoryId}/domains/${domainId}/questions`);
+  getQuestion(domainId: string){
+    return this.webService.get(`domains/${domainId}/questions`);
   }
 
-  createQuestion(categoryId: string, title: string){
-    return this.webService.post(`category/${categoryId}/questions`, {title});
+  createQuestion(domainId: string, title: string){
+    return this.webService.post(`domains/${domainId}/questions`, {title});
   }
 
   deleteQuestion(questionId: string){
