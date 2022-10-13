@@ -9,9 +9,11 @@ import { AppComponent } from './app.component';
 import { QuestionsViewComponent } from './component/questions-view/questions-view.component';
 import { CategoryFormComponent } from './component/category-form/category-form.component';
 import { QuestionFormComponent } from './component/question-form/question-form.component';
-// import { UserViewComponent } from './component/user-view/user-view.component';
+import { UserViewComponent } from './component/user-view/user-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
+import { CustomerFormComponent } from './component/customer-form/customer-form.component';
+import { CustomerViewComponent } from './component/customer-view/customer-view.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LoginComponent } from './component/login/login.component';
     CategoryFormComponent,
     QuestionFormComponent,
     LoginComponent,
-    //UserViewComponent,
+    UserViewComponent,
+    CustomerFormComponent,
+    CustomerViewComponent
   ],
   imports: [
     BrowserModule,

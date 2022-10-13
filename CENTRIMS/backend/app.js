@@ -6,7 +6,7 @@ const Customer = require ('./db/models/customer.model');
 const Question = require ('./db/models/question.model');
 const Domain   = require ('./db/models/domain.model');
 const Language = require ('./db/models/language.model');
-const User     = require('./db/models/user.model');
+const Response      = require('./db/models/response.model');
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -44,13 +44,6 @@ app.post('/:languageId/category', (req, res) => {
         .catch((err) => console.log(err));
 })
 
-app.post('/category', (req, res) => {
-    (new Category({'title': req.body.title}))
-        .save()
-        .then((category) => res.send(category))
-        .catch((err) => console.log(err));
-})
-
 app.patch('/category/:categoryId', (req, res) => {
     Category.findOneAndUpdate({'_id': req.params.categoryId}, { $set: req.body })
         .then(category => res.send(category))
@@ -62,6 +55,9 @@ app.delete('/category/:categoryId', (req, res) => {
         Domain.deleteMany({_categoryId: category._id})
             .then(() => category)
             .catch((err) => console.log(err));
+        Question.deleteMany({_categoryId: category._id})
+            .then(()=> category)
+            .catch((err)=> console.log(err));
     }
     const category = Category.findByIdAndDelete(req.params.categoryId)
         .then((category) => deleteCategory(category))
@@ -83,8 +79,14 @@ app.get('/questions/:questionId', (req, res) => {
         .catch((err) => console.log(err));
 })
 
-app.post('/category/:categoryId/questions', (req, res) => {
-    (new Question({'title': req.body.title, '_categoryId': req.params.categoryId}))
+app.get('/domains/:domainId/questions', (req, res)=> {
+    Question.find({_domainId: req.params.domainId})
+        .then(question => res.send(question))
+        .catch((err) => console.log(err));
+})
+
+app.post('/category/:categoryId/domains/:domainId/questions', (req, res) => {
+    (new Question({'title': req.body.title, '_categoryId': req.params.categoryId, '_domainId': req.params.domainId}))
         .save()
         .then((question) => res.send(question))
         .catch((err) => console.log(err));
@@ -198,7 +200,7 @@ app.use(passport.session());
 app.post('/login', function(req, res, next){
     passport.authenticate('local', function(err, user, info){
         if(err){
-            return res.status(501).json(err); 
+            return res.status(501).json(err);
         }
         if(!user){
             return res.status(501).json(info);
@@ -224,21 +226,71 @@ app.post('/login', function(req, res, next){
 //     res.send(category);
 // })
 
+
+/*****************************************Customer Endpoints*****************************************/
+
+app.get('/customer', (req, res)=> {
+    Customer.find({})
+        .then(customer => res.send(customer))
+        .catch((err) => console.log(err));
+})
+
+app.get('/customer/:customerId', (req, res) => {
+    Customer.findOne({_id: req.params.customerId})
+        .then(customer => res.send(customer))
+        .catch((err) => console.log(err));
+})
+
+app.post('/customer', (req, res) => {
+    (new Customer({'title': req.body.title}))
+        .save()
+        .then((customer) => res.send(customer))
+        .catch((err) => console.log(err));
+})
+
+app.patch('/customer/:customerId', (req, res) => {
+    Customer.findOneAndUpdate({'_id': req.params.customerId}, { $set: req.body })
+        .then(customer => res.send(customer))
+        .catch((err) => console.log(err));
+})
+
+
+/*****************************************Response Endpoints*****************************************/
+
+app.get('/response', (req, res)=> {
+    Response.find({})
+        .then(customer => res.send(customer))
+        .catch((err) => console.log(err));
+})
+
+app.get('/response/:responseId', (req, res) => {
+    Response.findOne({_id: req.params.customerId})
+        .then(customer => res.send(customer))
+        .catch((err) => console.log(err));
+})
+
+app.get('/response/:customerId/responses', (req, res)=> {
+    Response.find({_customerId: req.params.customerId})
+        .then(response => res.send(response))
+        .catch((err) => console.log(err));
+})
+
+app.post('/add-response/:customerId', (req, res) => {
+    (new Response({
+        _customerId: req.params.customerId,
+        'categoryName': req.body.categoryName,
+        '_categoryId': req.body._categoryId,
+        'domainName': req.body.domainName,
+        '_domainId': req.body._domainId,
+        'question': req.body.question,
+        'response': req.body.response}))
+        .save()
+        .then((customer) => res.send(customer))
+        .catch((err) => console.log(err));
+})
+
 app.listen(3000, ()=>console.log("Hello Server Connected"));
 
 
 
 /**************************************TESTING**************************/
-
-app.get('/domains/:domainId/questions', (req, res)=> {
-    Question.find({_domainId: req.params.domainId})
-        .then(question => res.send(question))
-        .catch((err) => console.log(err));
-})
-
-app.post('/domains/:domainId/questions', (req, res) => {
-    (new Question({'title': req.body.title,'_domainId': req.params.domainId}))
-        .save()
-        .then((question) => res.send(question))
-        .catch((err) => console.log(err));
-})

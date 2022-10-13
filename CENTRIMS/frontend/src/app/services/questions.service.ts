@@ -41,8 +41,12 @@ export class QuestionsService {
     return this.webService.get(`domains/${domainId}/questions`);
   }
 
-  createQuestion(domainId: string, title: string){
-    return this.webService.post(`domains/${domainId}/questions`, {title});
+  getQuestionByCat(categoryId: string){
+    return this.webService.get(`category/${categoryId}/questions`);
+  }
+
+  createQuestion(categoryId: string, domainId: string, title: string){
+    return this.webService.post(`category/${categoryId}/domains/${domainId}/questions`, {title});
   }
 
   deleteQuestion(questionId: string){
@@ -53,6 +57,10 @@ export class QuestionsService {
     return this.webService.get(`category/${categoryId}/domains`);
   }
 
+  getOneDomain(domainId: string){
+    return this.webService.get(`domains/${domainId}`);
+  }
+
   createDomain(categoryId: string, title: string){
     return this.webService.post(`category/${categoryId}/domains`, {title});
   }
@@ -60,4 +68,25 @@ export class QuestionsService {
   deleteDomain(domainId: string){
     return this.webService.delete(`domains/${domainId}/`);
   } 
+
+  createCustomer(title: string){
+    return this.webService.post(`customer`, {title});
+  }
+
+  getCustomer(){
+    return this.webService.get('customer')
+  }
+
+  getOneCustomerTitle(customerId: string){
+    return this.webService.get(`customer/${customerId}`)
+  }
+
+  createResponse(customerId: string, categoryName: string, _categoryId: string, domainName: string, _domainId: string, question: string, response: string){
+    return this.webService.post(`add-response/${customerId}`, {categoryName, _categoryId, domainName, _domainId, question, response});
+  }
+
+  getResponsesOfCustomer(customerId: string){
+    return this.webService.get(`response/${customerId}/responses`);
+  }
+
 }
