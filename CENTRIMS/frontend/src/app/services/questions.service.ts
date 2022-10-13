@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebService } from './web.service';
 
@@ -7,6 +8,10 @@ import { WebService } from './web.service';
 export class QuestionsService {
 
   constructor(private webService: WebService) { }
+
+  onSuccessfulLogin(username: string ){
+    
+  }
 
   getLanguage(){
     return this.webService.get('language')

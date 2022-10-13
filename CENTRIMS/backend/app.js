@@ -6,7 +6,7 @@ const Customer = require ('./db/models/customer.model');
 const Question = require ('./db/models/question.model');
 const Domain   = require ('./db/models/domain.model');
 const Language = require ('./db/models/language.model');
-const User      = require('./db/models/user.model');
+const User     = require('./db/models/user.model');
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -173,6 +173,43 @@ app.patch('/language/:languageId', (req, res) => {
     Language.findOneAndUpdate({'_id': req.params.languageId}, { $set: req.body })
         .then(language => res.send(language))
         .catch((err) => console.log(err));
+})
+
+/*****************************************Login Endpoints*****************************************/
+var passport = require('passport');
+var session = require('express-session');
+
+app.use(session({
+    name:'myname.sid',
+    resave:false,
+    saveUninitialized:false,
+    cookie:{
+        maxAge:36000000,
+        httpOnly:false,
+        secure:false
+    }
+}));
+
+require('./passport-config');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.post('/login', function(req, res, next){
+    passport.authenticate('local', function(err, user, info){
+        if(err){
+            return res.status(501).json(err); 
+        }
+        if(!user){
+            return res.status(501).json(info);
+        }
+        req.logIn(user, function(err){
+            if(err){
+                return res.status(501).json(err);
+            }
+            return res.status(200).json({message:'Login Success'});
+        });
+    }) (req, res, next);
 })
 
 // app.delete('/category/:categoryId', (req, res) => {

@@ -25,3 +25,4 @@ UserSchema.methods.isValid = function(hashedpassword){
 }
 
 const User = mongoose.model('User', UserSchema);
+
