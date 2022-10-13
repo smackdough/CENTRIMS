@@ -101,4 +101,13 @@ export class QuestionsViewComponent implements OnInit {
     }
     this.router.navigate([`/lang/${this.languageId}/category/${this.categoryId}/domain-form`]);
   }
+
+  addNewCustomer(){
+    this.router.navigate(['/lang/customer-form'])
+  }
+
+  viewCustomer(){
+    this.router.navigate(['/lang/customers'])
+  }
+
 }

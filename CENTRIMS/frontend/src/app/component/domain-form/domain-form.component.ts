@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from 'src/app/services/questions.service';
-import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-question-form',
@@ -27,7 +27,6 @@ export class DomainFormComponent implements OnInit {
   }
 
   cancel(){
-    console.log("YES");
     this.router.navigate(['/lang'])
   }
 
