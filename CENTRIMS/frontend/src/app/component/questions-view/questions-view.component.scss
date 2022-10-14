@@ -136,16 +136,24 @@ a.list-menu-item {
 }
 
 .lang {
-    margin-top:2%;
-    margin-left: 5%;
+    margin-top:3%;
+    margin-left: 36%;
 }
 
 .customer-form {
-    margin-top:-3%;
-    margin-left: 73%;
+    margin-top:-34%;
+    margin-left: 57%;
 }
 
-.customer-view {
-    margin-top:1%;
-    margin-left: 73%;
+// .customer-view {
+//     margin-top:1%;
+//     margin-left: 73%;
+// }
+
+.logo {
+    position: absolute;
+    top: 8%;
+    left: 13%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }

@@ -17,6 +17,8 @@ export class UserViewComponent implements OnInit {
   languages: Language[] = [];
   currentLanguage: string;  
   categories: Category[] = [];
+  selectedCategories: String[] = [];
+  newCategories: Category[] = [];
   questions: Question[] = [];
   languageId: string;
   categoryId: string;
@@ -26,6 +28,8 @@ export class UserViewComponent implements OnInit {
   nextButtonCheck: boolean=false;
   userResponse: any;
   responseArray: any=[];
+  surveySubmitted: boolean = false;
+  catSelector: boolean = false;
 
   customers: Customer[] = [];
   currentCustomer: string;
@@ -73,10 +77,9 @@ export class UserViewComponent implements OnInit {
                 this.currentLanguage = currentLanguage.title;
         })};
 
+        console.log(this.newCategories);
         this.questionService.getCategory(this.languageId)
-            .subscribe((categories: any) =>{ this.categories = categories
-            this.getQuestion(this.categories[this.categoryIndex]._id)
-        });
+            .subscribe((categories: any) =>{ this.categories = categories});
     });
 
   };
@@ -108,8 +111,8 @@ export class UserViewComponent implements OnInit {
       if(x==this.questionIndex){
         this.questions = [];
         this.questionIndex = 0;
-        if(this.categories[this.categoryIndex+1]){
-          this.getQuestion(this.categories[this.categoryIndex+1]._id);
+        if(this.newCategories[this.categoryIndex+1]){
+          this.getQuestion(this.newCategories[this.categoryIndex+1]._id);
           this.categoryIndex = this.categoryIndex+1;
         }
         
@@ -122,7 +125,7 @@ export class UserViewComponent implements OnInit {
 
     checkSubmissions(){
       let x = this.questions.length-1;
-      let y = this.categories.length-1;
+      let y = this.newCategories.length-1;
       if(x==this.questionIndex && y==this.categoryIndex){
         return true;
       }
@@ -137,7 +140,7 @@ export class UserViewComponent implements OnInit {
         domainTitle=c.title
         this.responseArray.push({
             "customerId":this.customerId,
-            "category":this.categories[this.categoryIndex].title, 
+            "category":this.newCategories[this.categoryIndex].title, 
             "categoryId": this.categoryId,
             "domain":domainTitle,
             "domainId": tempVar,
@@ -145,16 +148,91 @@ export class UserViewComponent implements OnInit {
             "response":event
           });
         
-        this.questionService.createResponse(this.customerId, this.categories[this.categoryIndex].title, this.categoryId, domainTitle, tempVar, this.questions[this.questionIndex].title, event)
+        this.questionService.createResponse(this.customerId, this.newCategories[this.categoryIndex].title, this.categoryId, domainTitle, tempVar, this.questions[this.questionIndex].title, event).subscribe(()=>console.log("YAHOOOOOOOO"))
       }));
         
       this.nextButtonCheck = true;
-
     }
 
     sendResponses(){
+      this.surveySubmitted = true;
       console.log(this.responseArray);
     }
 
+    redirectHome(){
+      this.router.navigate(['/user/'])
+    }
+
+    categoriesSelected(){
+      // console.log(this.categories+ " All categories after selection");
+      if(this.selectedCategories.length==0){
+        alert("Please select categories to proceed, thank you");
+        return
+      }
+
+      // this.categories = this.selectedCategories;
+
+      // for(let i=0; i<this.categories.length;i++){
+      //   console.log(this.categories[i].title+ " FIRST CATeGORY Name");
+      // }
+
+      for(let i=0; i<this.selectedCategories.length; i++){
+        for(let j=0; j<this.categories.length; j++){
+          if(this.selectedCategories[i]===this.categories[j]._id){
+            this.newCategories.push(this.categories[j]);
+          }
+        }
+      }
+
+      this.getQuestion(this.newCategories[this.categoryIndex]._id);
+
+      console.log(this.newCategories+" SECOND CHECK");
+      // for(let i=this.selectedCategories.length-1; i>=0; i--){
+      //   let keepItem = this.selectedCategories[i];
+      //   for (let j = this.categories.length-1; j >= 0; j--) {
+      //     console.log(this.categories[j]._id+" Before ENtering loop")
+      //     if (this.categories[j]._id != keepItem) {
+      //       console.log(keepItem+" Keep Item")
+      //       console.log(this.categories[j]._id+" Category ID")
+      //       this.categories.splice(j, 1);
+      //     }
+      //   }
+      //   this.selectedCategories.splice(i, 1);
+      // }
+
+      // for(let i=0;  i<this.selectedCategories.length; i++){
+      //   let keepItem = this.selectedCategories[i];
+      //   for (let j=0; j < this.categories.length; j++) {
+      //     console.log(this.categories[j]._id+" Before ENtering loop")
+      //     if (this.categories[j]._id === keepItem) {
+      //       console.log(keepItem+" Keep Item")
+      //       console.log(this.categories[j]._id+" Category ID")
+      //       break;
+      //     }
+      //     this.categories.splice(j, 1);
+      //   }
+      //   this.selectedCategories.splice(i, 1);
+      // }
+
+      this.catSelector=true;
+    }
+
+    onCatSelectChange($event: any){
+      const id = $event.target.value;
+      const isChecked = $event.target.checked;
+      if(isChecked){
+        this.selectedCategories.push(id);
+      }else if(this.selectedCategories.length>0){
+        let deleteItem = id;
+        for (let i = this.selectedCategories.length-1; i >= 0; i--) {
+          if (this.selectedCategories[i] === deleteItem) {
+            this.selectedCategories.splice(i, 1);
+          }
+        }
+      }
+
+      console.log(this.selectedCategories);
+
+    }
 
 }

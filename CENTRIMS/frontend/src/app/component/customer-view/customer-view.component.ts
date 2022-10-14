@@ -46,4 +46,8 @@ export class CustomerViewComponent implements OnInit {
     });
   }
 
+  redirectHome(){
+    this.router.navigate(['/lang/'])
+  }
+
 }

@@ -110,4 +110,8 @@ export class QuestionsViewComponent implements OnInit {
     this.router.navigate(['/lang/customers'])
   }
 
+  manageCustomer(){
+    this.router.navigate(['/lang/manage-customers'])
+  }
+
 }

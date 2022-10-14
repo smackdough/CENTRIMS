@@ -82,6 +82,7 @@ export class QuestionsService {
   }
 
   createResponse(customerId: string, categoryName: string, _categoryId: string, domainName: string, _domainId: string, question: string, response: string){
+    console.log("YES I'M IN HERE")
     return this.webService.post(`add-response/${customerId}`, {categoryName, _categoryId, domainName, _domainId, question, response});
   }
 
