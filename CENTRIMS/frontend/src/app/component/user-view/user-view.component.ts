@@ -149,7 +149,10 @@ export class UserViewComponent implements OnInit {
             "response":event
           });
         
-        this.questionService.createResponse(this.customerId, this.newCategories[this.categoryIndex].title, this.categoryId, domainTitle, tempVar, this.questions[this.questionIndex].title, event).subscribe(()=>console.log("YAHOOOOOOOO"))
+        let currentDate = new Date().toLocaleDateString('en-AU',);
+        console.log(currentDate);
+
+        this.questionService.createResponse(this.customerId, this.newCategories[this.categoryIndex].title, this.categoryId, domainTitle, tempVar, this.questions[this.questionIndex].title, event, currentDate).subscribe(()=>console.log("Response Saved"))
       }));
         
       this.nextButtonCheck = true;

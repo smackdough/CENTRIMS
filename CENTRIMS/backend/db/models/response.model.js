@@ -21,6 +21,9 @@ const ResponseSchema = new mongoose.Schema({
     },
     response: {
         type: String
+    },
+    date: {
+        type: String
     }
 });
 

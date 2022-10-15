@@ -20,6 +20,7 @@
             <th scope="col">Domain</th>
             <th scope="col">Question</th>
             <th scope="col">Response</th>
+            <th scope="col">Date</th>
           </tr>
         </thead>
         <tbody *ngFor="let res of responses">
@@ -28,6 +29,7 @@
             <td>{{res.domainName}}</td>
             <td>{{res.question}}</td>
             <td>{{res.response}}</td>
+            <td>{{res.date}}</td>
           </tr>
         </tbody>
       </table>

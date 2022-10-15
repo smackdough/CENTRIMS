@@ -283,7 +283,8 @@ app.post('/add-response/:customerId', (req, res) => {
         'domainName': req.body.domainName,
         '_domainId': req.body._domainId,
         'question': req.body.question,
-        'response': req.body.response}))
+        'response': req.body.response,
+        'date': req.body.date}))
         .save()
         .then((customer) => res.send(customer))
         .catch((err) => console.log(err));
