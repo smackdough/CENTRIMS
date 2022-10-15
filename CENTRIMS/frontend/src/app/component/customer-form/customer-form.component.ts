@@ -20,8 +20,10 @@ export class CustomerFormComponent implements OnInit {
   addCustomer(value: string){
     this.questionService.createCustomer(value)
       .subscribe((customer: any)=>{
-        this.router.navigate(['/lang']);
+      window.location.reload();
       alert("Customer Added Successfully")})
   }
+
+  // this.router.navigate(['/lang']);
 
 }

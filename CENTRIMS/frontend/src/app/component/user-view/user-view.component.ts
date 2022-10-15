@@ -30,6 +30,7 @@ export class UserViewComponent implements OnInit {
   responseArray: any=[];
   surveySubmitted: boolean = false;
   catSelector: boolean = false;
+  hideLanguage: boolean = false;
 
   customers: Customer[] = [];
   currentCustomer: string;
@@ -160,7 +161,9 @@ export class UserViewComponent implements OnInit {
     }
 
     redirectHome(){
-      this.router.navigate(['/user/'])
+      if(confirm("Are you sure you want to leave current survey session?")){
+        this.router.navigate(['/user/'])
+      }
     }
 
     categoriesSelected(){
@@ -215,6 +218,7 @@ export class UserViewComponent implements OnInit {
       // }
 
       this.catSelector=true;
+      this.hideLanguage=true;
     }
 
     onCatSelectChange($event: any){

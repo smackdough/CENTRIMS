@@ -1,6 +1,19 @@
 <div class="logo" (click)="redirectHome()">
     <img src="assets\images\centrims_logo.jpg" alt="">
 </div>
+<!-- <div class="container customer-drop">
+    <div class="input-group mb-3" #myDrop="ngbDropdown" ngbDropdown>
+      <input type="text" class="form-control" >
+      <div class="input-group-append"  role="group" >
+      <button (click)="$event.stopPropagation(); myDrop.open();" class="btn btn-outline-success" ><b>▽</b></button>
+    </div>
+    <div class="dropdown-menu" ngbDropdownMenu> -->
+       <!-- <button class="dropdown-item" *ngFor="let cust of customers">{{cust.title}}</button> -->
+       <!-- <button class="dropdown-item" >One</button>
+       <button class="dropdown-item" >Two</button>
+    </div>
+   </div>
+  </div> -->
 <div class="customer-drop" *ngIf="!customerId">
     <div ngbDropdown class="d-inline-block lang">
         <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle *ngIf="currentCustomer">{{currentCustomer}}</button>
@@ -10,10 +23,10 @@
             {{cust.title}}
             </button>
         </div>
-        </div>
+    </div>
 </div>
 <div *ngIf="customerId">
-    <div class="row drop-down" >
+    <div class="row drop-down" *ngIf="hideLanguage==false">
         <div class="col">
           <div ngbDropdown class="d-inline-block">
             <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle *ngIf="currentLanguage">{{currentLanguage}}</button>
@@ -43,11 +56,11 @@
             </div>
             <div class="modal-box" *ngIf="catSelector==true">
                 <div>
-                    <div class="category-box d-flex">
+                    <!-- <div class="category-box d-flex">
                         <h1 class="title" *ngIf="categories.length>0"> 
                             <p><b>{{newCategories[categoryIndex].title}}</b></p>   
                         </h1>
-                    </div>
+                    </div> -->
                     <div class="question-box" *ngIf="questions.length>0">
                         <h5  *ngIf="questions[questionIndex]">{{questions[questionIndex].title}}
                         </h5>
@@ -149,7 +162,7 @@
                 <div>  
                         <p></p>
                         <!-- <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()">Previous</button> -->
-                        <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()">>>></button>
+                        <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()"><b>>></b></button>
                     </div>
                 </div>
                 <button class="btn btn-primary white-text button" *ngIf="checkSubmissions() && nextButtonCheck" (click)="sendResponses()">Submit</button>
@@ -273,7 +286,7 @@
                     <div>  
                         <!-- <p></p> -->
                         <!-- <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()">Previous</button> -->
-                        <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()">Next</button>
+                        <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()"><b>>></b></button>
                     </div>
                 </div>
                 <button class="btn btn-primary white-text button" *ngIf="checkSubmissions() && nextButtonCheck" (click)="sendResponses()">Submit</button>

@@ -61,20 +61,29 @@ export class QuestionsViewComponent implements OnInit {
   }
 
   deleteDomain(domain: Domain) {
-    this.questionService.deleteDomain(domain._id)
-      .subscribe((domain: any) => this.domains = this.domains.filter(d => d._id != domain._id))
-    this.router.navigate(['/lang/'+this.languageId]);
+    if(confirm("Are you sure you want to delete selected domain?")){
+      this.questionService.deleteDomain(domain._id)
+        .subscribe((domain: any) => this.domains = this.domains.filter(d => d._id != domain._id))
+      this.router.navigate(['/lang/'+this.languageId]);
+      alert("Domain deleted successfully!");
+    }
   };
 
   deleteQuestion(question: Question) { 
-    this.questionService.deleteQuestion(question._id)
-      .subscribe((question: any)=> this.questions = this.questions.filter(q => q._id != question._id)) 
+    if(confirm("Are you sure you want to delete selected question?")){
+      this.questionService.deleteQuestion(question._id)
+        .subscribe((question: any)=> this.questions = this.questions.filter(q => q._id != question._id)) 
+      alert("Question deleted successfully!");
+    }
   };
 
   deleteCategory(category: Category) {
-    this.questionService.deleteCategory(category._id).subscribe(()=> this.categories = this.categories.filter(c => c._id != category._id));
-    alert("Are you sure you want to delete this category?");
-    this.router.navigate(['/lang/'+this.languageId]);
+    if(confirm("Are you sure you want to delete selected category?")){
+      this.questionService.deleteCategory(category._id).subscribe(()=> this.categories = this.categories.filter(c => c._id != category._id));
+      this.router.navigate(['/lang/'+this.languageId]);
+      alert("Category deleted successfully!");
+    }
+    
   };
 
   addNewCategory(){
