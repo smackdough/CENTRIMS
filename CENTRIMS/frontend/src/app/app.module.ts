@@ -14,6 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
 import { CustomerFormComponent } from './component/customer-form/customer-form.component';
 import { CustomerViewComponent } from './component/customer-view/customer-view.component';
+import { RegisterComponent } from './component/register/register.component';
+import { ValidateService } from './services/validate.service';
+import { AuthService } from './services/auth.service';
+//import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { CustomerViewComponent } from './component/customer-view/customer-view.c
     LoginComponent,
     UserViewComponent,
     CustomerFormComponent,
-    CustomerViewComponent
+    CustomerViewComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +38,9 @@ import { CustomerViewComponent } from './component/customer-view/customer-view.c
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    RouterModule
+    RouterModule       
   ],
-  providers: [],
+  providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

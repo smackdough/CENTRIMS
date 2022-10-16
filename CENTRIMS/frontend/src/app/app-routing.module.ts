@@ -8,10 +8,14 @@ import { LoginComponent } from './component/login/login.component';
 import { UserViewComponent } from './component/user-view/user-view.component';
 import { CustomerFormComponent } from './component/customer-form/customer-form.component';
 import { CustomerViewComponent } from './component/customer-view/customer-view.component';
+import { RegisterComponent } from './component/register/register.component';
+import { ValidateService } from './services/validate.service';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'lang', component: QuestionsViewComponent },
   { path: 'lang/customer-form', component: CustomerFormComponent},
   { path: 'lang/customers', component: CustomerViewComponent},

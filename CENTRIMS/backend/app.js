@@ -1,12 +1,19 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
 const mongoose = require ('./db/mongoose');
+//const bodyParser = require('body-parser');
+//const cors = require('cors');
+const passport = require('passport');
+const jwt = require("jsonwebtoken");
+
 const Category = require ('./db/models/category.model.');
 const Customer = require ('./db/models/customer.model');
 const Question = require ('./db/models/question.model');
 const Domain   = require ('./db/models/domain.model');
 const Language = require ('./db/models/language.model');
 const Response = require('./db/models/response.model');
+const User     = require('./db/models/user.model');
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -153,7 +160,7 @@ app.delete('/domains/:domainId', (req, res) => {
 /*****************************************Language Endpoints*****************************************/
 
 app.get('/language', (req, res)=> {
-    Language.find({})
+    Language.find({_languageId: req.params.languageId})
         .then(language => res.send(language))
         .catch((err) => console.log(err));
 })
@@ -177,25 +184,110 @@ app.patch('/language/:languageId', (req, res) => {
         .catch((err) => console.log(err));
 })
 
-/*****************************************Login Endpoints*****************************************/
-// var passport = require('passport');
-// var session = require('express-session');
+/*****************************************User Endpoints*****************************************/
 
-// app.use(session({
-//     name:'myname.sid',
-//     resave:false,
-//     saveUninitialized:false,
-//     cookie:{
-//         maxAge:36000000,
-//         httpOnly:false,
-//         secure:false
-//     }
-// }));
+app.get('/users', (req, res)=> {
+    User.find({_userId: req.params.userId})
+        .then(user => res.send(user))
+        .catch((err) => console.log(err));
+})
 
-// require('./passport-config');
+app.get('/users/:userId', (req, res) => {
+    User.findOne({_id: req.params.userId})
+        .then(user => res.send(user))
+        .catch((err) => console.log(err));
+})
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.post('/users', (req, res) => {
+    (new User({'title': req.body.title}))
+        .save()
+        .then((user) => res.send(user))
+        .catch((err) => console.log(err));
+})
+
+app.patch('/users/:userId', (req, res) => {
+    User.findOneAndUpdate({'_id': req.params.userId}, { $set: req.body })
+        .then(user => res.send(user))
+        .catch((err) => console.log(err));
+})
+
+//app.use(passport.initialize());
+//app.use(passport.session());  
+
+require('./passport-config')(passport);
+
+/*****************************************Register User*****************************************/
+
+app.post('/register', (req, res, next) => {
+    let newUser = new User({
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password
+    });
+
+    User.addUser(newUser, (err, user) =>{
+        if(err){
+            res.json({success: false, msg:'Failed to register user'});
+        } else {
+            res.json({success: true, msg:'User registered'});
+        }
+
+    });
+});
+
+
+/*****************************************Authenticate User*****************************************/
+
+app.post('/authenticate', (req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.getUserByUsername(username, (err, user) => {
+        if(err){
+            throw err;
+        }
+        if(!user){
+            return res.json({success: false, msg: 'User not found'});
+        }
+
+        User.comparePassword(password, user.password, (err, isMatch) =>{
+            if(err){
+                throw err;
+            }
+            if(isMatch){
+                const token = jwt.sign(user.toJSON(), mongoose.secret, {
+                    expiresIn: 604800
+                });
+
+                res.json({
+                    success: true,
+                    token: 'JWT ' + token,
+                    user:{
+                        id:user._id,
+                        fname: user.fname,
+                        lname: user.lname,
+                        username: user.username,
+                        email: user.email
+                    }
+                });
+            } else{
+                return res.json({success: false, msg: 'Wrong password'});
+            }
+        });
+    });
+});
+
+/*****************************************Protect Profile*****************************************/
+
+app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+    res.json({user: req.user});
+});
+
+
+//app.use(cors());
+//app.use(bodyParser.json());
 
 // app.post('/login', function(req, res, next){
 //     passport.authenticate('local', function(err, user, info){

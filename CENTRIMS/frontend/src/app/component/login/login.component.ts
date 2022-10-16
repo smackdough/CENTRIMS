@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { QuestionsService } from 'src/app/services/questions.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,9 @@ import { QuestionsService } from 'src/app/services/questions.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  username: string;
+  password: string;
 
   loginForm: FormGroup = new FormGroup({
     email:new FormControl(null, [Validators.email, Validators.required]),
@@ -18,28 +22,44 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private _user: QuestionsService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
   }
 
-  onSuccessfulLogin(){
+  onSuccessfulLogin(){    
 
     if(!this.loginForm.valid){
       console.log("Invalid");
       return;
     }
 
-    //console.log(JSON.stringify(this.loginForm.value));
-    //this.router.navigate(['/lang']);
+    
+    
+    const user = {
+      username: this.username,
+      password: this.password
+    }
 
-    /*this._user.onSuccessfulLogin(JSON.stringify(this.loginForm.value))
-    .subscribe(
-      data => {console.log(data) }
-    )*/
+    this.authService.authenticateUser(user).subscribe((data:any) => {
+      //console.log(data);
+      if(data['success']){
+        this.authService.storeUserData(data.token, data.user);
+        alert("You are now logged in");
+        this.router.navigate(['/lang']);
+        this
+      } else{
+          alert(data['msg']);
+          this.router.navigate(['/login']);
+      }
+    });
+  }
 
-    //https://www.youtube.com/watch?v=ma9tKRR0dGk (15 minutes)
+  moveToRegister(){
+    this.router.navigate(['/register']);
   }
 
 }
+
+
