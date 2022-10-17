@@ -10,6 +10,7 @@ import { CustomerFormComponent } from './component/customer-form/customer-form.c
 import { CustomerViewComponent } from './component/customer-view/customer-view.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ValidateService } from './services/validate.service';
+import { LanguageFormComponent } from './component/language-form/language-form.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'lang', component: QuestionsViewComponent },
+  { path: 'lang/language-form', component: LanguageFormComponent},
   { path: 'lang/customer-form', component: CustomerFormComponent},
   { path: 'lang/customers', component: CustomerViewComponent},
   { path: 'lang/customers/:customerId', component: CustomerViewComponent},

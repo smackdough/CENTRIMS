@@ -5,6 +5,11 @@ const CustomerSchema = new mongoose.Schema({
         type: String,
         trim: true,
         minLength: 1
+    },
+    clientId: {
+        type: String,
+        trim: true,
+        minLength: 1
     }
 });
 

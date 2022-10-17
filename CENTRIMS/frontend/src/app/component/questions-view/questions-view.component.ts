@@ -115,6 +115,10 @@ export class QuestionsViewComponent implements OnInit {
     this.router.navigate(['/lang/customer-form'])
   }
 
+  addNewLanguage(){
+    this.router.navigate(['/lang/language-form'])
+  }
+
   viewCustomer(){
     this.router.navigate(['/lang/customers'])
   }

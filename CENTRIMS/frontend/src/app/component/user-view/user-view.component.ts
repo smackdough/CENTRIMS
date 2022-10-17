@@ -15,7 +15,7 @@ import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 export class UserViewComponent implements OnInit {
 
   languages: Language[] = [];
-  currentLanguage: string;  
+  currentLanguage: Language;  
   categories: Category[] = [];
   selectedCategories: String[] = [];
   newCategories: Category[] = [];
@@ -55,7 +55,10 @@ export class UserViewComponent implements OnInit {
     // this.languageId = this.languages[0]._id;
 
     this.route.params.subscribe((params: any) => { 
-        this.languageId = params.languageId;
+        if(params.languageId){
+          this.languageId = params.languageId;
+        }
+        
 
         this.customerId = params.customerId;
         if(!this.customerId) return;
@@ -75,7 +78,7 @@ export class UserViewComponent implements OnInit {
         if(this.languageId){
             this.questionService.getOneLanguageTitle(this.languageId)
             .subscribe((currentLanguage: any) => {
-                this.currentLanguage = currentLanguage.title;
+                this.currentLanguage = currentLanguage;
         })};
 
         console.log(this.newCategories);

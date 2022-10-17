@@ -69,8 +69,12 @@ export class QuestionsService {
     return this.webService.delete(`domains/${domainId}/`);
   } 
 
-  createCustomer(title: string){
-    return this.webService.post(`customer`, {title});
+  createCustomer(title: string, clientId: string){
+    return this.webService.post(`customer`, {title, clientId});
+  }
+
+  createLanguage(title: string, sagree: string, agree: string, neutral: string, dagree: string, sdagree: string){
+    return this.webService.post(`language`, {title, sagree, agree, neutral, dagree, sdagree});
   }
 
   getCustomer(){

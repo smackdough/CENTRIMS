@@ -172,7 +172,12 @@ app.get('/language/:languageId', (req, res) => {
 })
 
 app.post('/language', (req, res) => {
-    (new Language({'title': req.body.title}))
+    (new Language({'title': req.body.title, 
+                    'sagree': req.body.sagree, 
+                    'agree': req.body.agree, 
+                    'neutral': req.body.neutral, 
+                    'dagree': req.body.dagree, 
+                    'sdagree': req.body.sdagree}))
         .save()
         .then((language) => res.send(language))
         .catch((err) => console.log(err));
@@ -334,7 +339,7 @@ app.get('/customer/:customerId', (req, res) => {
 })
 
 app.post('/customer', (req, res) => {
-    (new Customer({'title': req.body.title}))
+    (new Customer({'title': req.body.title, 'clientId': req.body.clientId}))
         .save()
         .then((customer) => res.send(customer))
         .catch((err) => console.log(err));

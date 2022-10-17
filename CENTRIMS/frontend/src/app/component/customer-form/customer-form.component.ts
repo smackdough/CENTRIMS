@@ -17,8 +17,8 @@ export class CustomerFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addCustomer(value: string){
-    this.questionService.createCustomer(value)
+  addCustomer(title: string, clientId: string){
+    this.questionService.createCustomer(title, clientId)
       .subscribe((customer: any)=>{
       window.location.reload();
       alert("Customer Added Successfully")})

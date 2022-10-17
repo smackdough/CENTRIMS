@@ -17,6 +17,7 @@ import { CustomerViewComponent } from './component/customer-view/customer-view.c
 import { RegisterComponent } from './component/register/register.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { LanguageFormComponent } from './component/language-form/language-form.component';
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AuthService } from './services/auth.service';
     UserViewComponent,
     CustomerFormComponent,
     CustomerViewComponent,
-    RegisterComponent
+    RegisterComponent,
+    LanguageFormComponent
   ],
   imports: [
     BrowserModule,
