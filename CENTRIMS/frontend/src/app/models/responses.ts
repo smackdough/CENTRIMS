@@ -1,4 +1,6 @@
 export default class Category {
+    customerName: string;
+    clientId: string;
     _id: string;
     _customerId: string;
     categoryName: string;

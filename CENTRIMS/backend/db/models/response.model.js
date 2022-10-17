@@ -1,20 +1,17 @@
 const mongoose = require('mongoose');
 
 const ResponseSchema = new mongoose.Schema({
-    _customerId: {
+    customerName: {
+        type: String
+    },
+    clientId: {
         type: String
     },
     categoryName: {
         type: String
     },
-    _categoryId: {
-        type: mongoose.Types.ObjectId
-    },
     domainName: {
         type: String
-    },
-    _domainId: {
-        type: mongoose.Types.ObjectId
     },
     question: {
         type: String
@@ -24,6 +21,15 @@ const ResponseSchema = new mongoose.Schema({
     },
     date: {
         type: String
+    },
+    _categoryId: {
+        type: mongoose.Types.ObjectId
+    },
+    _customerId: {
+        type: String
+    },
+    _domainId: {
+        type: mongoose.Types.ObjectId
     }
 });
 

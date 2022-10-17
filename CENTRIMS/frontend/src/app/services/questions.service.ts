@@ -85,8 +85,8 @@ export class QuestionsService {
     return this.webService.get(`customer/${customerId}`)
   }
 
-  createResponse(customerId: string, categoryName: string, _categoryId: string, domainName: string, _domainId: string, question: string, response: string, date: string){
-    return this.webService.post(`add-response/${customerId}`, {categoryName, _categoryId, domainName, _domainId, question, response, date});
+  createResponse(customerName: string, clientId: string, customerId: string, categoryName: string, _categoryId: string, domainName: string, _domainId: string, question: string, response: string, date: string){
+    return this.webService.post(`add-response/${customerId}`, {customerName, clientId, categoryName, domainName, question, response, date, _categoryId, _domainId});
   }
 
   getResponsesOfCustomer(customerId: string){

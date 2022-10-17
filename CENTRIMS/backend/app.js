@@ -374,6 +374,8 @@ app.get('/response/:customerId/responses', (req, res)=> {
 
 app.post('/add-response/:customerId', (req, res) => {
     (new Response({
+        "customerName": req.body.customerName,
+        "clientId": req.body.clientId,
         _customerId: req.params.customerId,
         'categoryName': req.body.categoryName,
         '_categoryId': req.body._categoryId,

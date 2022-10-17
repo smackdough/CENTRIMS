@@ -34,6 +34,7 @@ export class UserViewComponent implements OnInit {
 
   customers: Customer[] = [];
   currentCustomer: string;
+  currentClientId: string;
   customerId: string;
 
   constructor(
@@ -67,6 +68,7 @@ export class UserViewComponent implements OnInit {
             this.questionService.getOneCustomerTitle(this.customerId)
             .subscribe((currentcustomer: any) => {
                 this.currentCustomer = currentcustomer.title;
+                this.currentClientId = currentcustomer.clientId;
             });
         }
 
@@ -155,7 +157,7 @@ export class UserViewComponent implements OnInit {
         let currentDate = new Date().toLocaleDateString('en-AU',);
         console.log(currentDate);
 
-        this.questionService.createResponse(this.customerId, this.newCategories[this.categoryIndex].title, this.categoryId, domainTitle, tempVar, this.questions[this.questionIndex].title, event, currentDate).subscribe(()=>console.log("Response Saved"))
+        this.questionService.createResponse(this.currentCustomer, this.currentClientId, this.customerId, this.newCategories[this.categoryIndex].title, this.categoryId, domainTitle, tempVar, this.questions[this.questionIndex].title, event, currentDate).subscribe(()=>console.log("Response Saved"))
       }));
         
       this.nextButtonCheck = true;
