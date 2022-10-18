@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --config=Scripts/config/webpack.dev.js --watch",
+    "build": "webpack --mode=production",
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +22,14 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "babel-loader": "^8.2.5",
+    "node-sass": "^7.0.3",
+    "sass-loader": "^13.1.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }

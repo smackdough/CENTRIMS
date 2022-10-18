@@ -155,7 +155,6 @@ export class UserViewComponent implements OnInit {
           });
         
         let currentDate = new Date().toLocaleDateString('en-AU',);
-        console.log(currentDate);
 
         this.questionService.createResponse(this.currentCustomer, this.currentClientId, this.customerId, this.newCategories[this.categoryIndex].title, this.categoryId, domainTitle, tempVar, this.questions[this.questionIndex].title, event, currentDate).subscribe(()=>console.log("Response Saved"))
       }));
