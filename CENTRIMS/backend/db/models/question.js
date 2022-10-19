@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const QuestionSchema = new mongoose.Schema({
     title: {
         type: String,
-        trim: true, 
-        minLength: 3
+        trim: true,
+        minLength: 1 
     },
     _categoryId:{
         type: mongoose.Types.ObjectId,

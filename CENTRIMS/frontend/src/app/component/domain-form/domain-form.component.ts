@@ -26,4 +26,8 @@ export class DomainFormComponent implements OnInit {
       .subscribe(()=>this.router.navigate(['../'], {relativeTo: this.route}));
   }
 
+  cancel(){
+    this.router.navigate(['/lang'])
+  }
+
 }
