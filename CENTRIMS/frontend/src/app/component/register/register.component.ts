@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
     emailCheck:new FormControl(null, [Validators.email, Validators.required]),
     passwordCheck: new FormControl(null, [Validators.required]),
     cpasswordCheck: new FormControl(null, [Validators.required])
-
   })
 
   constructor(
@@ -45,7 +44,6 @@ export class RegisterComponent implements OnInit {
         return;
     }
     else if(this.registerForm.controls['passwordCheck'].value != this.registerForm.controls['cpasswordCheck'].value){
-
         console.log("Invalid");
         alert("Passwords do not match!");
         return;
@@ -56,9 +54,7 @@ export class RegisterComponent implements OnInit {
       fname: this.fname,
       lname: this.lname,
       username: this.username,
-
-      password: this.password,
-
+      password: this.password
       //cpassword: this.registerForm.controls['cpassword']
     }
 
@@ -68,7 +64,7 @@ export class RegisterComponent implements OnInit {
         //this.flashmessage.show('You are now registered and can log in', {cssClass: 'alert-success', timeout:3200});
         alert('You are now registered and can log in');
         this.router.navigate(['login']);
-
+        //console.log(user);
       } else{
         alert('Registration failed');
         this.router.navigate(['register']);

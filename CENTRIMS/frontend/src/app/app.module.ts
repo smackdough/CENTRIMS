@@ -19,9 +19,6 @@ import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { LanguageFormComponent } from './component/language-form/language-form.component';
 //import { FlashMessagesModule } from 'angular2-flash-messages';
-import { AuthGuard } from './guards/auth.guard';
-import { AdminGuard } from './guards/admin.guard';
-
 
 @NgModule({
   declarations: [
@@ -42,14 +39,6 @@ import { AdminGuard } from './guards/admin.guard';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
-  ],
-  providers: [],
-    NgbModule,
-    RouterModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})       
-  ],
-  providers: [ValidateService, AuthService, AuthGuard, AdminGuard],
     NgbModule,
     RouterModule       
   ],

@@ -8,8 +8,6 @@ const passport = require('passport');
 const jwt = require("jsonwebtoken");
 //const bodyParser = require('body-parser');
 //const cors = require('cors');
-const passport = require('passport');
-const jwt = require("jsonwebtoken");
 
 const Category = require ('./db/models/category.model.');
 const Customer = require ('./db/models/customer.model');

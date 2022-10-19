@@ -4,11 +4,11 @@ import { CategoryFormComponent } from './component/category-form/category-form.c
 import { DomainFormComponent } from './component/domain-form/domain-form.component';
 import { QuestionFormComponent } from './component/question-form/question-form.component';
 import { QuestionsViewComponent } from './component/questions-view/questions-view.component';
-import { LoginComponent } from './component/login/login.component';
 import { UserViewComponent } from './component/user-view/user-view.component';
 import { CustomerFormComponent } from './component/customer-form/customer-form.component';
 import { CustomerViewComponent } from './component/customer-view/customer-view.component';
 import { RegisterComponent } from './component/register/register.component';
+import { LoginComponent } from './component/login/login.component';
 import { ValidateService } from './services/validate.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -18,7 +18,7 @@ import { LanguageFormComponent } from './component/language-form/language-form.c
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'lang', component: QuestionsViewComponent, canActivate:[AuthGuard, AdminGuard]},
   { path: 'lang/language-form', component: LanguageFormComponent, canActivate:[AuthGuard, AdminGuard]},
@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'user', component: UserViewComponent, canActivate:[AuthGuard]},
   { path: 'user/:customerId', component: UserViewComponent, canActivate:[AuthGuard]},
   { path: 'user/:customerId/:languageId', component: UserViewComponent, canActivate:[AuthGuard]}
-
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
