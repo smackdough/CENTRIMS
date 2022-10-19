@@ -10,28 +10,31 @@ import { CustomerFormComponent } from './component/customer-form/customer-form.c
 import { CustomerViewComponent } from './component/customer-view/customer-view.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ValidateService } from './services/validate.service';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { CanActivate } from '@angular/router';
 import { LanguageFormComponent } from './component/language-form/language-form.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent, },
   { path: 'register', component: RegisterComponent},
-  { path: 'lang', component: QuestionsViewComponent },
-  { path: 'lang/language-form', component: LanguageFormComponent},
-  { path: 'lang/customer-form', component: CustomerFormComponent},
-  { path: 'lang/customers', component: CustomerViewComponent},
-  { path: 'lang/customers/:customerId', component: CustomerViewComponent},
-  { path: 'lang/:languageId', component: QuestionsViewComponent },
-  { path: 'lang/:languageId/category/:categoryId', component: QuestionsViewComponent },
-  { path: 'lang/:languageId/category/:categoryId/domains/:domainId', component: QuestionsViewComponent },
-  { path: 'lang/:languageId/category-form', component: CategoryFormComponent },
-  { path: 'lang/:languageId/category/:categoryId/domains/:domainId/question-form', component: QuestionFormComponent },
-  { path: 'lang/:languageId/category/:categoryId/domain-form', component: DomainFormComponent},
-  { path: 'user', component: UserViewComponent},
-  { path: 'user/:customerId', component: UserViewComponent},
-  { path: 'user/:customerId/:languageId', component: UserViewComponent}
-];
+  { path: 'lang', component: QuestionsViewComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/language-form', component: LanguageFormComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/customer-form', component: CustomerFormComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/customers', component: CustomerViewComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/customers/:customerId', component: CustomerViewComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/:languageId', component: QuestionsViewComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/:languageId/category/:categoryId', component: QuestionsViewComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/:languageId/category/:categoryId/domains/:domainId', component: QuestionsViewComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/:languageId/category-form', component: CategoryFormComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/:languageId/category/:categoryId/domains/:domainId/question-form', component: QuestionFormComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'lang/:languageId/category/:categoryId/domain-form', component: DomainFormComponent, canActivate:[AuthGuard, AdminGuard]},
+  { path: 'user', component: UserViewComponent, canActivate:[AuthGuard]},
+  { path: 'user/:customerId', component: UserViewComponent, canActivate:[AuthGuard]},
+  { path: 'user/:customerId/:languageId', component: UserViewComponent, canActivate:[AuthGuard]}
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

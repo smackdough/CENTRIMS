@@ -33,9 +33,8 @@ export class LoginComponent implements OnInit {
     if(!this.loginForm.valid){
       console.log("Invalid");
       return;
-    }
+    }   
 
-    
     
     const user = {
       username: this.username,
@@ -44,11 +43,16 @@ export class LoginComponent implements OnInit {
 
     this.authService.authenticateUser(user).subscribe((data:any) => {
       //console.log(data);
-      if(data['success']){
-        this.authService.storeUserData(data.token, data.user);
+      if(data['success']){           
+        this.authService.storeUserData(data.token, data.user, data.user.role);        
         alert("You are now logged in");
-        this.router.navigate(['/lang']);
-        this
+        if(data.user.role == 'ADMIN'){
+          this.router.navigate(['/lang']);  
+        } 
+        else if(data.user.role == 'USER')
+        {
+          this.router.navigate(['/user']);
+        }
       } else{
           alert(data['msg']);
           this.router.navigate(['/login']);

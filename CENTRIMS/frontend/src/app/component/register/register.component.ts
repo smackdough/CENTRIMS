@@ -19,11 +19,12 @@ export class RegisterComponent implements OnInit {
   password: string;
 
   registerForm: FormGroup = new FormGroup({
-    fname: new FormControl(null, [Validators.required]),
-    lname: new FormControl(null, [Validators.required]),
-    email:new FormControl(null, [Validators.email, Validators.required]),
-    password: new FormControl(null, [Validators.required]),
-    cpassword: new FormControl(null, [Validators.required])
+    fnameCheck: new FormControl(null, [Validators.required]),
+    lnameCheck: new FormControl(null, [Validators.required]),
+    emailCheck:new FormControl(null, [Validators.email, Validators.required]),
+    passwordCheck: new FormControl(null, [Validators.required]),
+    cpasswordCheck: new FormControl(null, [Validators.required])
+
   })
 
   constructor(
@@ -43,7 +44,8 @@ export class RegisterComponent implements OnInit {
         //alert("Passwords do not match!");
         return;
     }
-    else if(this.registerForm.controls['password'].value != this.registerForm.controls['cpassword'].value){
+    else if(this.registerForm.controls['passwordCheck'].value != this.registerForm.controls['cpasswordCheck'].value){
+
         console.log("Invalid");
         alert("Passwords do not match!");
         return;
@@ -54,7 +56,9 @@ export class RegisterComponent implements OnInit {
       fname: this.fname,
       lname: this.lname,
       username: this.username,
+
       password: this.password,
+
       //cpassword: this.registerForm.controls['cpassword']
     }
 
@@ -64,6 +68,7 @@ export class RegisterComponent implements OnInit {
         //this.flashmessage.show('You are now registered and can log in', {cssClass: 'alert-success', timeout:3200});
         alert('You are now registered and can log in');
         this.router.navigate(['login']);
+
       } else{
         alert('Registration failed');
         this.router.navigate(['register']);

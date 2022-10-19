@@ -11,6 +11,20 @@ var UserSchema = new mongoose.Schema({
     },
 
     email: {
+        type: String               
+    },
+
+    username: {
+        type: String            
+    },
+
+    password: {
+        type: String               
+    },
+    role: {
+        type: String,
+        enum: ['ADMIN', 'USER'],
+        default: 'USER'
         type: String        
     },
 
@@ -19,7 +33,7 @@ var UserSchema = new mongoose.Schema({
     },
 
     password: {
-        type: String        
+        type: String      
     }
     //saltSecret: String
 });

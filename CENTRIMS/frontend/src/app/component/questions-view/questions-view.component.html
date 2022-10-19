@@ -1,7 +1,12 @@
+
+<div class="centered-container">
 <div class="logo">
     <img src="assets\images\centrims_logo.jpg" alt="">
 </div>
-<div class="centered-container">
+
+<div class = logout>
+    <button class="btn btn-primary" (click)="onLogout()">Log out</button>
+</div>
     <div class="row drop-down" >
         <div class="col">
           <div ngbDropdown class="d-inline-block lang">
@@ -23,15 +28,16 @@
             <button class="btn btn-primary" ngbDropdownItem (click)="addNewCustomer()">Add Customers</button>
             <!-- <button class="btn btn-primary" ngbDropdownItem (click)="manageCustomer()">Manage Customers</button> -->
             <button class="btn btn-primary" ngbDropdownItem (click)="viewCustomer()">View Responses</button>
-        </div>
-    </div>
+        </div>      
 
+    </div>
     <!-- <div class="customer-form">
         <button class="btn btn-primary" (click)="addNewCustomer()">Add Customers</button>
     </div>
     <div class="customer-view">
         <button class="btn btn-primary" (click)="viewCustomer()">View Customers</button>
     </div> -->
+
     <div class="question-manager-container">
         <div class="sidebar">
             <h1 class="has-text-primary white-text">Category</h1>

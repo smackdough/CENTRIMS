@@ -5,6 +5,7 @@ import Category from 'src/app/models/category';
 import Question from 'src/app/models/question';
 import Domain from 'src/app/models/domain';
 import { QuestionsService } from 'src/app/services/questions.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-questions-view',
@@ -21,14 +22,27 @@ export class QuestionsViewComponent implements OnInit {
   categoryId: string;
   domainId: string;
   tempCategoryIdHolder: string;
+  user: Object;
 
   constructor(
     private questionService: QuestionsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
     ) { }
 
   ngOnInit() {
+
+
+    this.authService.getProfile().subscribe({
+      next: (profile) => {        
+        this.user = profile;
+      },        
+      error: (err) => {
+        console.log(err);
+        return false;
+      }
+    })  
   
     this.questionService.getLanguage()
       .subscribe((languages: any) => this.languages = languages);
@@ -125,6 +139,13 @@ export class QuestionsViewComponent implements OnInit {
 
   manageCustomer(){
     this.router.navigate(['/lang/manage-customers'])
+  }
+
+  onLogout(){
+    this.authService.logout();
+    alert("You are now logged out");
+    this.router.navigate(['/login']);
+    return;
   }
 
 }

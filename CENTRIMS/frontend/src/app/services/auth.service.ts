@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import {HttpClientModule} from '@angular/common/http'
-import {HttpClient} from '@angular/common/http'
-//import 'rxjs/add/operator/map';
+import {HttpClient} from '@angular/common/http';
 import { map, filter, switchMap } from 'rxjs/operators';
+import { JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+
 
 
 
@@ -12,28 +14,57 @@ import { map, filter, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  
   authToken: any;
-  user: any;
-  private headers = new HttpHeaders().set('Content-type', 'application/json');
+  user: any; 
+  role: any; 
+  //private headers = new HttpHeaders().set('Content-type', 'application/json');
+
 
   constructor(private http:HttpClient) { }
 
   registerUser(user: any){
-    //headers.append('Content-type', 'application/json');
-    return this.http.post('http://localhost:3000/register', user, {headers: this.headers});
+    let headers = new HttpHeaders();
+    headers.append('Content-type', 'application/json');
+    return this.http.post('http://localhost:3000/register', user, {headers: headers});
+
       //.pipe(map(res => JSON.stringify(res)));
   }
 
   authenticateUser(user: any){
-    return this.http.post('http://localhost:3000/authenticate', user, {headers: this.headers});
+    let headers = new HttpHeaders();
+    headers.append('Content-type', 'application/json');
+    return this.http.post('http://localhost:3000/authenticate', user, {headers: headers});
+  }  
+
+  getProfile(){
+    let headers = new HttpHeaders();
+    this.loadToken();    
+    headers = headers.append('Authorization', this.authToken);
+    headers = headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/profile', {headers: headers});
   }
 
-  storeUserData(token: any, user: any){
+  storeUserData(token: any, user: any, role: any){    
     localStorage.setItem('id_token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));     
+    localStorage.setItem('role', JSON.stringify(role));
     this.authToken = token;
-    this.user = user;
+    this.user = user; 
+    this.role = role;     
   }
+
+  loadToken(){
+    const token = localStorage.getItem('id_token');    
+    this.authToken = token;
+  }
+
+  loggedIn(){
+    const token = localStorage.getItem('id_token');
+    //console.log(token);
+    const jwtHelper = new JwtHelperService ();
+    return token != null && !jwtHelper.isTokenExpired(token);
+  }  
 
   logout(){
     this.authToken = null;
