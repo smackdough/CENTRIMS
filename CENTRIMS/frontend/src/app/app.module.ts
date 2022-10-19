@@ -17,7 +17,9 @@ import { CustomerViewComponent } from './component/customer-view/customer-view.c
 import { RegisterComponent } from './component/register/register.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 import { LanguageFormComponent } from './component/language-form/language-form.component';
+import { AdminGuard } from './guards/admin.guard';
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
@@ -42,7 +44,7 @@ import { LanguageFormComponent } from './component/language-form/language-form.c
     NgbModule,
     RouterModule       
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ValidateService, AuthService, AuthGuard, AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

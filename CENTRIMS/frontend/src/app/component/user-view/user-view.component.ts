@@ -6,6 +6,7 @@ import Customer from 'src/app/models/customer';
 import Responses from 'src/app/models/responses';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-view',
@@ -40,7 +41,8 @@ export class UserViewComponent implements OnInit {
   constructor(
     private questionService: QuestionsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService 
   ) { }
 
   ngOnInit(): void {
@@ -247,12 +249,12 @@ export class UserViewComponent implements OnInit {
     }
 
     
-  // onLogout(){
-  //       this.authService.logout();
-  //       alert("You are now logged out");
-  //       this.router.navigate(['/login']);
-  //       return;
-  //     }
+  onLogout(){
+        this.authService.logout();
+        alert("You are now logged out");
+        this.router.navigate(['/login']);
+        return;
+      }
 
 }
 
