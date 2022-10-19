@@ -1,12 +1,39 @@
 <div class="logo">
     <img src="assets\images\centrims_logo.jpg" alt="">
 </div>
+<<<<<<< Updated upstream
 <div class="row drop-down" >
     <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle>Select Language</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button class="btn btn-primary" ngbDropdownItem  *ngFor="let cat of categories" (click)="languageClick(cat.title)">{{cat.title}}</button>
+=======
+<div class = logout>
+    <button class="btn btn-primary" (click)="onLogout()">Log out</button>
+</div>
+<!-- <div class="container customer-drop">
+    <div class="input-group mb-3" #myDrop="ngbDropdown" ngbDropdown>
+      <input type="text" class="form-control" >
+      <div class="input-group-append"  role="group" >
+      <button (click)="$event.stopPropagation(); myDrop.open();" class="btn btn-outline-success" ><b>▽</b></button>
+    </div>
+    <div class="dropdown-menu" ngbDropdownMenu> -->
+       <!-- <button class="dropdown-item" *ngFor="let cust of customers">{{cust.title}}</button> -->
+       <!-- <button class="dropdown-item" >One</button>
+       <button class="dropdown-item" >Two</button>
+    </div>
+   </div>
+  </div> -->
+<div class="customer-drop" *ngIf="!customerId">
+    <div ngbDropdown class="d-inline-block lang">
+        <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle *ngIf="currentCustomer">{{currentCustomer}}</button>
+        <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle *ngIf="!currentCustomer">Select Customer</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+            <button class="btn btn-primary" ngbDropdownItem  *ngFor="let cust of customers" [routerLink] = "['/user/', cust._id]">
+            {{cust.title}} - {{cust.clientId}}
+            </button>
+>>>>>>> Stashed changes
         </div>
       </div>
     </div>

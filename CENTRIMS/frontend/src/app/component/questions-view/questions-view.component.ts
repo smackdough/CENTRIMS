@@ -4,6 +4,7 @@ import Category from 'src/app/models/category';
 import Question from 'src/app/models/question';
 import Domain from 'src/app/models/domain';
 import { QuestionsService } from 'src/app/services/questions.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-questions-view',
@@ -15,16 +16,39 @@ export class QuestionsViewComponent implements OnInit {
   questions: Question[] = [];
   domains: Domain[] = [];
   categoryId: string;
+<<<<<<< Updated upstream
+=======
+  domainId: string;
+  tempCategoryIdHolder: string;
+  user: Object;
+>>>>>>> Stashed changes
 
   constructor(
     private questionService: QuestionsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
     ) { }
 
   ngOnInit() {
+<<<<<<< Updated upstream
     this.questionService.getCategory()
       .subscribe((categories: any) => this.categories = categories);
+=======
+
+    this.authService.getProfile().subscribe({
+      next: (profile) => {        
+        this.user = profile;
+      },        
+      error: (err) => {
+        console.log(err);
+        return false;
+      }
+    })    
+  
+    this.questionService.getLanguage()
+      .subscribe((languages: any) => this.languages = languages);
+>>>>>>> Stashed changes
 
     this.route.params.subscribe((params: any) => {
       this.categoryId = params.categoryId;
@@ -56,4 +80,19 @@ export class QuestionsViewComponent implements OnInit {
     }
     this.router.navigate(['./domain-form'], {relativeTo: this.route});
   }
+<<<<<<< Updated upstream
+=======
+
+  manageCustomer(){
+    this.router.navigate(['/lang/manage-customers'])
+  }
+
+  onLogout(){
+    this.authService.logout();
+    alert("You are now logged out");
+    this.router.navigate(['/login']);
+    return;
+  }
+
+>>>>>>> Stashed changes
 }

@@ -4,12 +4,24 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+<<<<<<< Updated upstream
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+    "dev": "webpack --config=Scripts/config/webpack.dev.js --watch",
+    "build": "webpack --mode=production",
+    "start": "nodemon app.js"
+>>>>>>> Stashed changes
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< Updated upstream
+=======
+    "-": "^0.0.1",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+>>>>>>> Stashed changes
     "express": "^4.18.1",
     "mongoose": "^6.6.0"
   }
