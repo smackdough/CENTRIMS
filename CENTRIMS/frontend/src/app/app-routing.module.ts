@@ -4,18 +4,8 @@ import { CategoryFormComponent } from './component/category-form/category-form.c
 import { DomainFormComponent } from './component/domain-form/domain-form.component';
 import { QuestionFormComponent } from './component/question-form/question-form.component';
 import { QuestionsViewComponent } from './component/questions-view/questions-view.component';
+import { LoginComponent } from './component/login/login.component';
 import { UserViewComponent } from './component/user-view/user-view.component';
-<<<<<<< Updated upstream
-
-const routes: Routes = [
-  { path: '', redirectTo: 'category', pathMatch: 'full' },
-  { path: 'category', component: QuestionsViewComponent },
-  { path: 'category/:categoryId', component: QuestionsViewComponent },
-  { path: 'category-form', component: CategoryFormComponent },
-  { path: 'category/:categoryId/question-form', component: QuestionFormComponent },
-  { path: 'category/:categoryId/domain-form', component: DomainFormComponent},
-  { path: 'user/en', component: UserViewComponent}
-=======
 import { CustomerFormComponent } from './component/customer-form/customer-form.component';
 import { CustomerViewComponent } from './component/customer-view/customer-view.component';
 import { RegisterComponent } from './component/register/register.component';
@@ -44,8 +34,7 @@ const routes: Routes = [
   { path: 'user', component: UserViewComponent, canActivate:[AuthGuard]},
   { path: 'user/:customerId', component: UserViewComponent, canActivate:[AuthGuard]},
   { path: 'user/:customerId/:languageId', component: UserViewComponent, canActivate:[AuthGuard]}
->>>>>>> Stashed changes
-];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

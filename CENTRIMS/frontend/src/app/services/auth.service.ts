@@ -9,6 +9,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,12 +20,14 @@ export class AuthService {
   role: any; 
   //private headers = new HttpHeaders().set('Content-type', 'application/json');
 
+
   constructor(private http:HttpClient) { }
 
   registerUser(user: any){
     let headers = new HttpHeaders();
     headers.append('Content-type', 'application/json');
     return this.http.post('http://localhost:3000/register', user, {headers: headers});
+
       //.pipe(map(res => JSON.stringify(res)));
   }
 

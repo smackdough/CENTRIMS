@@ -10,19 +10,20 @@
                     <h1 class="has-text-primary white-text">Register</h1>                    
 
                     <label for="fname" class="has-text-primary white-text"><b>First Name</b></label>
-                    <input formControlName ="fnameCheck" [(ngModel)]="fname" fname="fname" type="text" placeholder="Enter First Name" name="fname" required>
+
+                    <input formControlName ="fname" [(ngModel)]="fname" fname="fname" type="text" placeholder="Enter First Name" name="fname" required>
 
                     <label for="lname" class="has-text-primary white-text"><b>Last Name</b></label>
-                    <input formControlName ="lnameCheck" [(ngModel)]="lname" lname="lname" type="text" placeholder="Enter Last Name" name="lname" required>
+                    <input formControlName ="lname" [(ngModel)]="lname" lname="lname" type="text" placeholder="Enter Last Name" name="lname" required>
 
                     <label for="uname" class="has-text-primary white-text"><b>Username</b></label>
-                    <input formControlName ="emailCheck" [(ngModel)]="username" username="username" type="text" placeholder="Enter Username" name="uname" required>
+                    <input formControlName ="email" [(ngModel)]="username" username="username" type="text" placeholder="Enter Username" name="uname" required>
 
                     <label for="psw" class="has-text-primary white-text"><b>Password</b></label>
-                    <input formControlName ="passwordCheck" [(ngModel)]="password" password="password" type="password" placeholder="Enter Password" name="psw" required>
+                    <input formControlName ="password" [(ngModel)]="password" password="password" type="password" placeholder="Enter Password" name="psw" required>
 
                     <label for="cpsw" class="has-text-primary white-text"><b>Confirm Password</b></label>
-                    <input formControlName ="cpasswordCheck" type="password" placeholder="Enter Password" name="cpsw" required>
+                    <input formControlName ="cpassword" type="password" placeholder="Enter Password" name="cpsw" required>
 
                     <div class="button-center">
                         <button type="submit" class="btn btn-primary add-button" (click) = "register()">Enter</button> &nbsp;

@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       console.log("Invalid");
       return;
     }   
+
     
     const user = {
       username: this.username,
@@ -52,7 +53,6 @@ export class LoginComponent implements OnInit {
         {
           this.router.navigate(['/user']);
         }
-              
       } else{
           alert(data['msg']);
           this.router.navigate(['/login']);

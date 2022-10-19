@@ -9,13 +9,13 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class DomainFormComponent implements OnInit {
 
-  categoryId: string;
+  categoryId: string;  
 
   constructor(
     private questionService: QuestionsService,
     private router: Router,
     private route: ActivatedRoute) { 
-      this.route.params.subscribe((params: any)=> this.categoryId = params.categoryId);
+      this.route.params.subscribe((params: any)=> this.categoryId = params.categoryId);      
     }
 
   ngOnInit(): void {
@@ -24,6 +24,10 @@ export class DomainFormComponent implements OnInit {
   addDomain(value: string){
     this.questionService.createDomain(this.categoryId, value)
       .subscribe(()=>this.router.navigate(['../'], {relativeTo: this.route}));
+  }
+
+  cancel(){
+    this.router.navigate(['/lang'])
   }
 
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -10,8 +11,6 @@ import { CategoryFormComponent } from './component/category-form/category-form.c
 import { QuestionFormComponent } from './component/question-form/question-form.component';
 import { UserViewComponent } from './component/user-view/user-view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-<<<<<<< Updated upstream
-=======
 import { LoginComponent } from './component/login/login.component';
 import { CustomerFormComponent } from './component/customer-form/customer-form.component';
 import { CustomerViewComponent } from './component/customer-view/customer-view.component';
@@ -22,7 +21,7 @@ import { LanguageFormComponent } from './component/language-form/language-form.c
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
->>>>>>> Stashed changes
+
 
 @NgModule({
   declarations: [
@@ -30,7 +29,12 @@ import { AdminGuard } from './guards/admin.guard';
     QuestionsViewComponent,
     CategoryFormComponent,
     QuestionFormComponent,
+    LoginComponent,
     UserViewComponent,
+    CustomerFormComponent,
+    CustomerViewComponent,
+    RegisterComponent,
+    LanguageFormComponent
   ],
   imports: [
     BrowserModule,
@@ -38,17 +42,18 @@ import { AdminGuard } from './guards/admin.guard';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-<<<<<<< Updated upstream
     NgbModule
   ],
   providers: [],
-=======
     NgbModule,
     RouterModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})       
   ],
   providers: [ValidateService, AuthService, AuthGuard, AdminGuard],
->>>>>>> Stashed changes
+    NgbModule,
+    RouterModule       
+  ],
+  providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

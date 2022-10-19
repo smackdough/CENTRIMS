@@ -21,10 +21,8 @@
     "@auth0/angular-jwt": "^5.1.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.11.6",
-<<<<<<< Updated upstream
-=======
     "body-parser": "^1.20.1",
->>>>>>> Stashed changes
+    "@popperjs/core": "^2.11.6",    
     "bootstrap": "^5.2.1",
     "bootstrap-scss": "^5.2.0",
     "cors": "^2.8.5",

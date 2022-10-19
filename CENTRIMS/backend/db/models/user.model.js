@@ -25,6 +25,15 @@ var UserSchema = new mongoose.Schema({
         type: String,
         enum: ['ADMIN', 'USER'],
         default: 'USER'
+        type: String        
+    },
+
+    username: {
+        type: String        
+    },
+
+    password: {
+        type: String      
     }
     //saltSecret: String
 });

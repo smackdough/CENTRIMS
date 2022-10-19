@@ -1,17 +1,17 @@
-<div class="logo">
+<div class="logo" (click)="redirectHome()">
     <img src="assets\images\centrims_logo.jpg" alt="">
 </div>
-<<<<<<< Updated upstream
 <div class="row drop-down" >
     <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle>Select Language</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button class="btn btn-primary" ngbDropdownItem  *ngFor="let cat of categories" (click)="languageClick(cat.title)">{{cat.title}}</button>
-=======
+
 <div class = logout>
     <button class="btn btn-primary" (click)="onLogout()">Log out</button>
 </div>
+
 <!-- <div class="container customer-drop">
     <div class="input-group mb-3" #myDrop="ngbDropdown" ngbDropdown>
       <input type="text" class="form-control" >
@@ -33,123 +33,158 @@
             <button class="btn btn-primary" ngbDropdownItem  *ngFor="let cust of customers" [routerLink] = "['/user/', cust._id]">
             {{cust.title}} - {{cust.clientId}}
             </button>
->>>>>>> Stashed changes
         </div>
-      </div>
     </div>
 </div>
-<div class="centered-content">
-    <div class="modal-box">
-        <div>
-            <div class="category-box d-flex">
-                <h1 class="title" *ngIf="categories.length>0"> 
-                    <p><b>{{categories[categoryIndex].title}}</b></p>   
-                </h1>
-            </div>
-            <div class="question-box" *ngIf="questions.length>0">
-                <h5  *ngIf="questions[questionIndex]">{{questions[questionIndex].title}}
-                </h5>
-            </div><br>
-            
-            <div class="displayFlex row ">
-                <div  class="col-sm-3">
-                    <div class="row">
-                        <div class="col-sm-12 center-el">
-                            <input type="radio" value="strongly disagree" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Strongly Disagree')">
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                Strongly Disagree
-                            </label>
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                😩
-                            </label>
-                        </div>
-                    </div>
+<div *ngIf="customerId">
+    <div class="row drop-down" *ngIf="hideLanguage==false">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle *ngIf="currentLanguage">{{currentLanguage.title}}</button>
+                <button type="button" class="btn btn-primary " id="dropdownBasic1" ngbDropdownToggle *ngIf="!currentLanguage">Select Language</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+                  <button class="btn btn-primary" ngbDropdownItem  *ngFor="let lang of languages" [routerLink] = "['/user/',customerId, lang._id]" (click)="categoryIndex=0">
+                    {{lang.title}}
+                  </button>
                 </div>
-                <div  class="col-sm-2">
-                    <div class="row">
-                        <div class="col-sm-12 center-el">
-                            <input type="radio" value="disagree" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Disagree')">
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                Disagree
-                            </label>
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                😟
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div  class="col-sm-2">
-                    <div class="row">
-                        <div class="col-sm-12 center-el">
-                            <input type="radio" value="neutral" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Neutral')">
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                Neutral
-                            </label>
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                😐
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="row">
-                        <div class="col-sm-12 center-el">
-                            <input type="radio" value="agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Agree')">
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                Agree
-                            </label>
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                🙂
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="row">
-                        <div class="col-sm-12 center-el">
-                            <input type="radio" value="strongly agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Strongly Agree')">
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                Strongly Agree
-                            </label>
-                        </div>
-                        <div class="col-sm-12 center-el">
-                            <label class="radio-inline">
-                                😃
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
         </div>
-        <!-- <div style="width: 100% !important"> -->
-        <div>    
-            <!-- <div class="footer"> -->
-            <div>  
-                <p></p>
-                <!-- <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()">Previous</button> -->
-                <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()">Next</button>
+    </div>
+    <button type="button" class="btn btn-primary current-user">Current User: {{currentCustomer}}</button>
+    <div class="centered-content">
+
+        <!---------------------------------------------------------ALL LANGUAGES-------------------------------->
+
+        <div class="form-check form-check-inline form-position" *ngIf="currentLanguage && catSelector==false">
+            <b>Please select categories for survey</b><br><br>
+            <form>
+                <div *ngFor="let cat of categories">
+                   <input type="checkbox" [value]="cat._id" (change)="onCatSelectChange($event)"> {{cat.title}}
+                </div>
+            </form>
+            <br>
+            <button class="btn btn-primary" (click)="categoriesSelected()">Continue</button>
+        </div>
+
+        <div class="modal-box" *ngIf="catSelector==true && surveySubmitted==false">
+            <div>
+                <br><br>
+                <div class="question-box" *ngIf="questions.length>0">
+                    <h5  *ngIf="questions[questionIndex]"><b>{{questions[questionIndex].title}}</b>
+                    </h5>
+                </div><br>
+                
+                <div class="displayFlex row ">
+                    <div  class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 center-el">
+                                <input type="radio" value="strongly disagree" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Strongly Disagree')">
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    {{currentLanguage.sdagree}}
+                                </label>
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    😩
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="col-sm-2">
+                        <div class="row">
+                            <div class="col-sm-12 center-el">
+                                <input type="radio" value="disagree" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Disagree')">
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    {{currentLanguage.dagree}}
+                                </label>
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    😟
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div  class="col-sm-2">
+                        <div class="row">
+                            <div class="col-sm-12 center-el">
+                                <input type="radio" value="neutral" [(ngModel)]="userResponse"  name="options" (click)="submitAnswer('Neutral')">
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    {{currentLanguage.neutral}}
+                                </label>
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    😐
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="row">
+                            <div class="col-sm-12 center-el">
+                                <input type="radio" value="agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Agree')">
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    {{currentLanguage.agree}}
+                                </label>
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    🙂
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 center-el">
+                                <input type="radio" value="strongly agree" [(ngModel)]="userResponse" name="options" (click)="submitAnswer('Strongly Agree')">
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    {{currentLanguage.sagree}}
+                                </label>
+                            </div>
+                            <div class="col-sm-12 center-el">
+                                <label class="radio-inline">
+                                    😃
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="footer" id="wrapper">
+                <div>  
+                    <br>
+                    <button class="btn btn-primary white-text button" *ngIf="!checkSubmissions() && nextButtonCheck"  (click)="nextQuestion()"><b>>></b></button>
+                </div>
+            </div>
+            <button class="btn btn-primary white-text button" *ngIf="checkSubmissions() && nextButtonCheck" (click)="sendResponses()">Submit</button>
+        </div>
+
+
+
+        <div class="container" *ngIf="surveySubmitted==true">
+            <div class="card">
+                <br>
+                <div id="positions">
+                    <img src="assets\images\thankyou.png" alt="thankyou-survey-submitted">
+                </div>
+                <br>
+                <div class="card-body">Thank You Your Responses Have been Saved</div>
             </div>
         </div>
-        <button class="btn btn-primary white-text button" *ngIf="checkSubmissions() && nextButtonCheck" (click)="sendResponses()">Submit</button>
+        
     </div>
 </div>
