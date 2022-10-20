@@ -148,4 +148,9 @@ export class QuestionsViewComponent implements OnInit {
     return;
   }
 
+  onRegister(){
+    this.router.navigate(['/register']);
+    return;
+  }
+
 }

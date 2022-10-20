@@ -19,7 +19,7 @@ import { LanguageFormComponent } from './component/language-form/language-form.c
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent},
+  { path: 'register', component: RegisterComponent, canActivate:[AuthGuard, AdminGuard]},
   { path: 'lang', component: QuestionsViewComponent, canActivate:[AuthGuard, AdminGuard]},
   { path: 'lang/language-form', component: LanguageFormComponent, canActivate:[AuthGuard, AdminGuard]},
   { path: 'lang/customer-form', component: CustomerFormComponent, canActivate:[AuthGuard, AdminGuard]},

@@ -68,14 +68,13 @@ export class RegisterComponent implements OnInit {
       } else{
         alert('Registration failed');
         this.router.navigate(['register']);
-
       }
     });
 
   }
 
-  moveToLogin(){
-    this.router.navigate(['/login']);
+  moveBack(){
+    this.router.navigate(['/lang']);
   }
 
 }
