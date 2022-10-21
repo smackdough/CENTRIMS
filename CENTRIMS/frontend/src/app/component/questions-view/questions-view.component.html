@@ -4,10 +4,6 @@
     <img src="assets\images\centrims_logo.jpg" alt="">
 </div>
 
-<div class = logout>
-    <button class="btn btn-primary" (click)="onRegister()">Register client</button>
-    <button class="btn btn-primary" (click)="onLogout()">Log out</button>
-</div>
     <div class="row drop-down" >
         <div class="col">
           <div ngbDropdown class="d-inline-block lang">
@@ -24,20 +20,14 @@
     </div>
 
     <div ngbDropdown class="d-inline-block customer-form">
-        <button type="button" class="btn btn-primary customer-form" id="dropdownBasic1" ngbDropdownToggle>Client Management</button>
+        <button type="button" class="btn btn-primary customer-form" id="dropdownBasic1" ngbDropdownToggle>User Management</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
-            <button class="btn btn-primary" ngbDropdownItem (click)="addNewCustomer()">Add Customers</button>
-            <!-- <button class="btn btn-primary" ngbDropdownItem (click)="manageCustomer()">Manage Customers</button> -->
-            <button class="btn btn-primary" ngbDropdownItem (click)="viewCustomer()">View Responses</button>
+            <button class="btn btn-primary" ngbDropdownItem (click)="addNewCustomer()">Add New Customers</button>
+            <button class="btn btn-primary" ngbDropdownItem (click)="viewCustomer()">View Customer Responses</button>
+            <button class="btn btn-primary" ngbDropdownItem (click)="onRegister()">Register New Staff</button>
         </div>      
 
     </div>
-    <!-- <div class="customer-form">
-        <button class="btn btn-primary" (click)="addNewCustomer()">Add Customers</button>
-    </div>
-    <div class="customer-view">
-        <button class="btn btn-primary" (click)="viewCustomer()">View Customers</button>
-    </div> -->
 
     <div class="question-manager-container">
         <div class="sidebar">
@@ -53,18 +43,6 @@
             <button class="btn btn-primary add-button" (click)="addNewCategory()">Add Category</button>
         </div>
 
-        <!--<div class="domainSidebar">
-            <h1 class="has-text-primary white-text">Domain</h1>
-            <div class="list-menu">
-                <div class="list-menu-item" *ngFor = "let d of domains" [routerLink] = "['/lang/', languageId ,'category', d._categoryId ,'domains', d._id]" routerLinkActive = "is-active">
-                    <p class="white-text">
-                        {{d.title}}
-                        <span class="pull-right task-delete btn-rounded-corners" (click)="deleteDomain(d)">X</span>
-                    </p>
-                </div>                
-            </div>
-            <button class="btn btn-primary add-button" (click)="addNewDomain()">Add Domain</button>
-        </div>-->
         
         <div class="domainSidebar">
             <h1 class="has-text-primary white-text">Domain</h1>
@@ -90,4 +68,9 @@
         </div>
     </div>
     
+</div>
+
+
+<div class = logout>
+    <button class="btn btn-primary" (click)="onLogout()">Log out</button>
 </div>

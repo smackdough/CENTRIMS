@@ -155,15 +155,7 @@ app.patch('/domains/:domainId', (req, res) => {
         .catch((err) => console.log(err));
 })
 
-// app.delete('/domains/:domainId', (req, res) => {
-//     Domain.findByIdAndDelete(req.params.domainId)
-//         .then(domain => res.send(domain))
-//         .catch((err) => console.log(err));
-// })
-
 app.delete('/domains/:domainId', (req, res) => {
-    Domain.findByIdAndDelete(req.params.domainId)
-        .then(domain => res.send(domain))
     const deleteDomain = (domain) => {
         Question.deleteMany({_domainId: domain._id})
             .then(() => domain)
@@ -314,39 +306,6 @@ app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, ne
 });
 
 
-//app.use(cors());
-//app.use(bodyParser.json());
-
-// app.post('/login', function(req, res, next){
-//     passport.authenticate('local', function(err, user, info){
-//         if(err){
-//             return res.status(501).json(err);
-//         }
-//         if(!user){
-//             return res.status(501).json(info);
-//         }
-//         req.logIn(user, function(err){
-//             if(err){
-//                 return res.status(501).json(err);
-//             }
-//             return res.status(200).json({message:'Login Success'});
-//         });
-//     }) (req, res, next);
-// })
-
-// app.delete('/category/:categoryId', (req, res) => {
-//     const deleteCategory = (category) => {
-//         Question.deleteMany({_categoryId: category._id})
-//             .then(() => category)
-//             .catch((err) => console.log(err));
-//     }
-//     const category = Category.findByIdAndDelete(req.params.categoryId)
-//         .then((category) => deleteCategory(category))
-//         .catch((err) => console.log(err));
-//     res.send(category);
-// })
-
-
 /*****************************************Customer Endpoints*****************************************/
 
 app.get('/customer', (req, res)=> {
@@ -457,9 +416,6 @@ app.patch('/users/:userId', (req, res) => {
         .catch((err) => console.log(err));
 })
 
-//app.use(passport.initialize());
-//app.use(passport.session());  
-
 require('./passport-config')(passport);
 
 /*****************************************Register User*****************************************/
@@ -483,155 +439,6 @@ app.post('/register', (req, res, next) => {
     });
 });
 
-
-/*****************************************Authenticate User*****************************************/
-
-app.post('/authenticate', (req, res, next) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    User.getUserByUsername(username, (err, user) => {
-        if(err){
-            throw err;
-        }
-        if(!user){
-            return res.json({success: false, msg: 'User not found'});
-        }
-
-        User.comparePassword(password, user.password, (err, isMatch) =>{
-            if(err){
-                throw err;
-            }
-            if(isMatch){
-                const token = jwt.sign(user.toJSON(), mongoose.secret, {
-                    expiresIn: 604800
-                });
-
-                res.json({
-                    success: true,
-                    token: 'JWT ' + token,
-                    user:{
-                        id:user._id,
-                        fname: user.fname,
-                        lname: user.lname,
-                        username: user.username,
-                        email: user.email
-                    }
-                });
-            } else{
-                return res.json({success: false, msg: 'Wrong password'});
-            }
-        });
-    });
-});
-
-/*****************************************Protect Profile*****************************************/
-
-app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-    res.json({user: req.user});
-});
-
-
-//app.use(cors());
-//app.use(bodyParser.json());
-
-// app.post('/login', function(req, res, next){
-//     passport.authenticate('local', function(err, user, info){
-//         if(err){
-//             return res.status(501).json(err);
-//         }
-//         if(!user){
-//             return res.status(501).json(info);
-//         }
-//         req.logIn(user, function(err){
-//             if(err){
-//                 return res.status(501).json(err);
-//             }
-//             return res.status(200).json({message:'Login Success'});
-//         });
-//     }) (req, res, next);
-// })
-
-// app.delete('/category/:categoryId', (req, res) => {
-//     const deleteCategory = (category) => {
-//         Question.deleteMany({_categoryId: category._id})
-//             .then(() => category)
-//             .catch((err) => console.log(err));
-//     }
-//     const category = Category.findByIdAndDelete(req.params.categoryId)
-//         .then((category) => deleteCategory(category))
-//         .catch((err) => console.log(err));
-//     res.send(category);
-// })
-
-
-/*****************************************Customer Endpoints*****************************************/
-
-app.get('/customer', (req, res)=> {
-    Customer.find({})
-        .then(customer => res.send(customer))
-        .catch((err) => console.log(err));
-})
-
-app.get('/customer/:customerId', (req, res) => {
-    Customer.findOne({_id: req.params.customerId})
-        .then(customer => res.send(customer))
-        .catch((err) => console.log(err));
-})
-
-app.post('/customer', (req, res) => {
-    (new Customer({'title': req.body.title, 'clientId': req.body.clientId}))
-        .save()
-        .then((customer) => res.send(customer))
-        .catch((err) => console.log(err));
-})
-
-app.patch('/customer/:customerId', (req, res) => {
-    Customer.findOneAndUpdate({'_id': req.params.customerId}, { $set: req.body })
-        .then(customer => res.send(customer))
-        .catch((err) => console.log(err));
-})
-
-
-/*****************************************Response Endpoints*****************************************/
-
-app.get('/response', (req, res)=> {
-    Response.find({})
-        .then(customer => res.send(customer))
-        .catch((err) => console.log(err));
-})
-
-app.get('/response/:responseId', (req, res) => {
-    Response.findOne({_id: req.params.customerId})
-        .then(customer => res.send(customer))
-        .catch((err) => console.log(err));
-})
-
-app.get('/response/:customerId/responses', (req, res)=> {
-    Response.find({_customerId: req.params.customerId})
-        .then(response => res.send(response))
-        .catch((err) => console.log(err));
-})
-
-app.post('/add-response/:customerId', (req, res) => {
-    (new Response({
-        "customerName": req.body.customerName,
-        "clientId": req.body.clientId,
-        _customerId: req.params.customerId,
-        'categoryName': req.body.categoryName,
-        '_categoryId': req.body._categoryId,
-        'domainName': req.body.domainName,
-        '_domainId': req.body._domainId,
-        'question': req.body.question,
-        'response': req.body.response,
-        'date': req.body.date}))
-        .save()
-        .then((customer) => res.send(customer))
-        .catch((err) => console.log(err));
-})
-
 app.listen(3000, ()=>console.log("Hello Server Connected"));
-
-
 
 /**************************************TESTING**************************/

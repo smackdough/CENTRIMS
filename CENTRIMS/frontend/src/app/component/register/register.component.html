@@ -15,8 +15,8 @@
                     <label for="lname" class="has-text-primary white-text"><b>Last Name</b></label>
                     <input formControlName ="lnameCheck" [(ngModel)]="lname" lname="lname" type="text" placeholder="Enter Last Name" name="lname" required>
 
-                    <label for="uname" class="has-text-primary white-text"><b>Username</b></label>
-                    <input formControlName ="emailCheck" [(ngModel)]="username" username="username" type="text" placeholder="Enter Username" name="uname" required>
+                    <label for="uname" class="has-text-primary white-text"><b>Email</b></label>
+                    <input formControlName ="emailCheck" [(ngModel)]="username" username="username" type="text" placeholder="Enter Email" name="uname" required>
 
                     <label for="psw" class="has-text-primary white-text"><b>Password</b></label>
                     <input formControlName ="passwordCheck" [(ngModel)]="password" password="password" type="password" placeholder="Enter Password" name="psw" required>
@@ -25,7 +25,7 @@
                     <input formControlName ="cpasswordCheck" type="password" placeholder="Enter Password" name="cpsw" required>
 
                     <div class="button-center">
-                        <button type="submit" class="btn btn-primary add-button" (click) = "register()">Enter</button> &nbsp;
+                        <button type="submit" class="btn btn-primary add-button" (click) = "register()">Submit</button> &nbsp;
                         <button type="submit" class="btn btn-primary add-button" (click) = "moveBack()">Back</button>
                     </div>
                 </form>

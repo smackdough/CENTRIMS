@@ -23,7 +23,6 @@ export class UserViewComponent implements OnInit {
   questions: Question[] = [];
   languageId: string;
   categoryId: string;
-//   languageIndex: number=0;
   categoryIndex: number=0;
   questionIndex: number=0;
   nextButtonCheck: boolean=false;
@@ -55,8 +54,6 @@ export class UserViewComponent implements OnInit {
         this.languages = languages;
       });
 
-    // this.languageId = this.languages[0]._id;
-
     this.route.params.subscribe((params: any) => { 
         if(params.languageId){
           this.languageId = params.languageId;
@@ -73,11 +70,6 @@ export class UserViewComponent implements OnInit {
                 this.currentClientId = currentcustomer.clientId;
             });
         }
-
-        // if(!this.languageId){
-        //     setTimeout(()=>{ alert("Please select language to proceed, thank you!") }, 2000)
-            
-        // }
     
         if(this.languageId){
             this.questionService.getOneLanguageTitle(this.languageId)
@@ -91,25 +83,12 @@ export class UserViewComponent implements OnInit {
     });
 
   };
-
-    // getCategory(languageId: string){
-    //     console.log(languageId);
-    //     this.languageId = languageId;
-    //     if(!this.languageId) return;
-    //     this.questionService.getCategory(this.languageId).subscribe((categories: any) => {this.categories = categories
-    //     console.log(categories);
-    //     });
-    // };
     
     getQuestion(categoryId: string){
       console.log(categoryId);
       this.categoryId = categoryId;
       if(!this.categoryId) return;
       this.questionService.getQuestionByCat(this.categoryId).subscribe((questions: any) => {this.questions = questions
-    //   console.log(questions)
-    //   if(questions.length==0){
-    //     alert("No questions available for selected category, please contact supervisor, thank you")
-    //   };
       });
 
     };
@@ -176,17 +155,10 @@ export class UserViewComponent implements OnInit {
     }
 
     categoriesSelected(){
-      // console.log(this.categories+ " All categories after selection");
       if(this.selectedCategories.length==0){
         alert("Please select categories to proceed, thank you");
         return
       }
-
-      // this.categories = this.selectedCategories;
-
-      // for(let i=0; i<this.categories.length;i++){
-      //   console.log(this.categories[i].title+ " FIRST CATeGORY Name");
-      // }
 
       for(let i=0; i<this.selectedCategories.length; i++){
         for(let j=0; j<this.categories.length; j++){
@@ -199,32 +171,6 @@ export class UserViewComponent implements OnInit {
       this.getQuestion(this.newCategories[this.categoryIndex]._id);
 
       console.log(this.newCategories+" SECOND CHECK");
-      // for(let i=this.selectedCategories.length-1; i>=0; i--){
-      //   let keepItem = this.selectedCategories[i];
-      //   for (let j = this.categories.length-1; j >= 0; j--) {
-      //     console.log(this.categories[j]._id+" Before ENtering loop")
-      //     if (this.categories[j]._id != keepItem) {
-      //       console.log(keepItem+" Keep Item")
-      //       console.log(this.categories[j]._id+" Category ID")
-      //       this.categories.splice(j, 1);
-      //     }
-      //   }
-      //   this.selectedCategories.splice(i, 1);
-      // }
-
-      // for(let i=0;  i<this.selectedCategories.length; i++){
-      //   let keepItem = this.selectedCategories[i];
-      //   for (let j=0; j < this.categories.length; j++) {
-      //     console.log(this.categories[j]._id+" Before ENtering loop")
-      //     if (this.categories[j]._id === keepItem) {
-      //       console.log(keepItem+" Keep Item")
-      //       console.log(this.categories[j]._id+" Category ID")
-      //       break;
-      //     }
-      //     this.categories.splice(j, 1);
-      //   }
-      //   this.selectedCategories.splice(i, 1);
-      // }
 
       this.catSelector=true;
       this.hideLanguage=true;

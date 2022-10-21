@@ -21,10 +21,6 @@ export class QuestionsService {
     return this.webService.get(`language/${languageId}`)
   }
 
-  // getCategory(){
-  //   return this.webService.get('category')
-  // }
-
   getCategory(languageId: string){
     return this.webService.get(`${languageId}/category`)
   }
