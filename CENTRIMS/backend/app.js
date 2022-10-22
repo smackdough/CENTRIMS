@@ -153,15 +153,7 @@ app.patch('/domains/:domainId', (req, res) => {
         .catch((err) => console.log(err));
 })
 
-// app.delete('/domains/:domainId', (req, res) => {
-//     Domain.findByIdAndDelete(req.params.domainId)
-//         .then(domain => res.send(domain))
-//         .catch((err) => console.log(err));
-// })
-
 app.delete('/domains/:domainId', (req, res) => {
-    Domain.findByIdAndDelete(req.params.domainId)
-        .then(domain => res.send(domain))
     const deleteDomain = (domain) => {
         Question.deleteMany({_domainId: domain._id})
             .then(() => domain)
@@ -312,39 +304,6 @@ app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, ne
 });
 
 
-//app.use(cors());
-//app.use(bodyParser.json());
-
-// app.post('/login', function(req, res, next){
-//     passport.authenticate('local', function(err, user, info){
-//         if(err){
-//             return res.status(501).json(err);
-//         }
-//         if(!user){
-//             return res.status(501).json(info);
-//         }
-//         req.logIn(user, function(err){
-//             if(err){
-//                 return res.status(501).json(err);
-//             }
-//             return res.status(200).json({message:'Login Success'});
-//         });
-//     }) (req, res, next);
-// })
-
-// app.delete('/category/:categoryId', (req, res) => {
-//     const deleteCategory = (category) => {
-//         Question.deleteMany({_categoryId: category._id})
-//             .then(() => category)
-//             .catch((err) => console.log(err));
-//     }
-//     const category = Category.findByIdAndDelete(req.params.categoryId)
-//         .then((category) => deleteCategory(category))
-//         .catch((err) => console.log(err));
-//     res.send(category);
-// })
-
-
 /*****************************************Customer Endpoints*****************************************/
 
 app.get('/customer', (req, res)=> {
@@ -458,9 +417,6 @@ app.patch('/users/:userId', (req, res) => {
         .then(user => res.send(user))
         .catch((err) => console.log(err));
 })
-
-//app.use(passport.initialize());
-//app.use(passport.session());  
 
 require('./passport-config')(passport);
 
@@ -645,7 +601,5 @@ app.post('/add-response/:customerId', (req, res) => {
 })
 
 app.listen(3000, ()=>console.log("Hello Server Connected"));
-
-
 
 /**************************************TESTING**************************/

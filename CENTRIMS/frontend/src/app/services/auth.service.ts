@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import {HttpClientModule} from '@angular/common/http'
 import {HttpClient} from '@angular/common/http';
-import { map, filter, switchMap } from 'rxjs/operators';
-import { JwtModule } from '@auth0/angular-jwt';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 //Reference:
@@ -19,7 +16,6 @@ export class AuthService {
   authToken: any;
   user: any; 
   role: any; 
-  //private headers = new HttpHeaders().set('Content-type', 'application/json');
 
 
   constructor(private http:HttpClient) { }
@@ -62,7 +58,6 @@ export class AuthService {
 
   loggedIn(){
     const token = localStorage.getItem('id_token');
-    //console.log(token);
     const jwtHelper = new JwtHelperService ();
     return token != null && !jwtHelper.isTokenExpired(token);
   }  

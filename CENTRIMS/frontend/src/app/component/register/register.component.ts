@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { QuestionsService } from 'src/app/services/questions.service';
-//import { FlashMessagesService } from 'angular2-flash-messages';
 
 //Reference:
 //MEAN Stack Front To Back
@@ -33,7 +31,6 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService
-    //private flashmessage: FlashMessagesService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +40,6 @@ export class RegisterComponent implements OnInit {
   register(){    
     if(!this.registerForm.valid){
         console.log("Invalid");
-        //alert("Passwords do not match!");
         return;
     }
     else if(this.registerForm.controls['passwordCheck'].value != this.registerForm.controls['cpasswordCheck'].value){
@@ -58,16 +54,13 @@ export class RegisterComponent implements OnInit {
       lname: this.lname,
       username: this.username,
       password: this.password
-      //cpassword: this.registerForm.controls['cpassword']
     }
 
     //register user
     this.authService.registerUser(user).subscribe((data:any) => {
       if(data['success']){
-        //this.flashmessage.show('You are now registered and can log in', {cssClass: 'alert-success', timeout:3200});
         alert('You are now registered and can log in');
         this.router.navigate(['login']);
-        //console.log(user);
       } else{
         alert('Registration failed');
         this.router.navigate(['register']);

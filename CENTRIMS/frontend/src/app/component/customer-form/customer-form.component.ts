@@ -24,6 +24,4 @@ export class CustomerFormComponent implements OnInit {
       alert("Customer Added Successfully")})
   }
 
-  // this.router.navigate(['/lang']);
-
 }
