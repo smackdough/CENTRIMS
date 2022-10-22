@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params} from '@angular/router';
-import Category from 'src/app/Models/category';
-import Question from 'src/app/Models/question';
+import Category from 'src/app/models/category';
+import Question from 'src/app/models/question';
 import { TaskService } from 'src/app/task.service';
 import { __param } from 'tslib';
 

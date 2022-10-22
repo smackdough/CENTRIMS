@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const CategorySchema = new mongoose.Schema({
     title: {
         type: String,
-        trim: true
+        trim: true,
+        minLength: 1
+    },
+    _languageId: {
+        type: mongoose.Types.ObjectId,
+        required: true
     }
 });
 

@@ -6,4 +6,7 @@ mongoose.connect('mongodb://localhost:27017/testdb', { useNewUrlParser: true, us
     .catch((err)=>console.log(err));
 
 
-module.exports = mongoose;
+module.exports = {
+    mongoose,
+    secret:'yoursecret'
+}
