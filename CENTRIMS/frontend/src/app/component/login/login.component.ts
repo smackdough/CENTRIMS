@@ -4,6 +4,10 @@ import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { AuthService } from 'src/app/services/auth.service';
 
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

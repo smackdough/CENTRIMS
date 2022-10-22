@@ -1,3 +1,4 @@
+//Create mongoose schema for customer
 const mongoose = require('mongoose');
 
 const CustomerSchema = new mongoose.Schema({

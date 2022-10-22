@@ -1,3 +1,8 @@
+
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
+
 var passport = require('passport');
 LocalStrategy = require('passport-local').Strategy;
 const Extractjwt = require('passport-jwt').ExtractJwt;

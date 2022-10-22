@@ -1,3 +1,4 @@
+//Create mongoose schema for user
 const mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 

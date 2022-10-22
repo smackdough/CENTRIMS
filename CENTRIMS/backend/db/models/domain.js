@@ -1,3 +1,4 @@
+//Create mongoose schema for domain
 const mongoose = require("mongoose");
 
 const DomainSchema = new mongoose.Schema({

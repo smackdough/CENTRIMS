@@ -15,6 +15,9 @@ import { AdminGuard } from './guards/admin.guard';
 import { CanActivate } from '@angular/router';
 import { LanguageFormComponent } from './component/language-form/language-form.component';
 
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

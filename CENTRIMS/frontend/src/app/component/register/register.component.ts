@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
 
 @Component({
   selector: 'app-register',

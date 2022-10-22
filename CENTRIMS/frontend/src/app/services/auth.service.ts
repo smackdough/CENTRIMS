@@ -3,7 +3,9 @@ import { HttpHeaders } from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
-
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
 
 
 @Injectable({

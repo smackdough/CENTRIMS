@@ -1,3 +1,4 @@
+//Create mongoose schema for response
 const mongoose = require('mongoose');
 
 const ResponseSchema = new mongoose.Schema({
