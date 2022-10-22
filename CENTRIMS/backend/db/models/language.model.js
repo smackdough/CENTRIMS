@@ -1,3 +1,4 @@
+//Create mongoose schema for language
 const mongoose = require('mongoose');
 
 const LanguageSchema = new mongoose.Schema({

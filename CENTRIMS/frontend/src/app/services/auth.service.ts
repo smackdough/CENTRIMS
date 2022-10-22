@@ -6,7 +6,9 @@ import { map, filter, switchMap } from 'rxjs/operators';
 import { JwtModule } from '@auth0/angular-jwt';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
-
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
 
 
 @Injectable({

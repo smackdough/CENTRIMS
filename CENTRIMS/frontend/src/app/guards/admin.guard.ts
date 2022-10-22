@@ -2,6 +2,10 @@ import { Injectable } from "@angular/core";
 import { Router, CanActivate } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
+
 @Injectable()
 export class AdminGuard implements CanActivate{
     constructor(

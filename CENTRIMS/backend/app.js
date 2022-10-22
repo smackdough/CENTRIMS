@@ -6,8 +6,6 @@ const mongoose = require ('./db/mongoose');
 
 const passport = require('passport');
 const jwt = require("jsonwebtoken");
-//const bodyParser = require('body-parser');
-//const cors = require('cors');
 
 const Category = require ('./db/models/category.model.');
 const Customer = require ('./db/models/customer.model');
@@ -432,6 +430,10 @@ app.patch('/language/:languageId', (req, res) => {
 
 /*****************************************User Endpoints*****************************************/
 
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
+
 app.get('/users', (req, res)=> {
     User.find({_userId: req.params.userId})
         .then(user => res.send(user))
@@ -464,6 +466,10 @@ require('./passport-config')(passport);
 
 /*****************************************Register User*****************************************/
 
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
+
 app.post('/register', (req, res, next) => {
     let newUser = new User({
         fname: req.body.fname,
@@ -485,6 +491,10 @@ app.post('/register', (req, res, next) => {
 
 
 /*****************************************Authenticate User*****************************************/
+
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
 
 app.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
@@ -526,6 +536,10 @@ app.post('/authenticate', (req, res, next) => {
 });
 
 /*****************************************Protect Profile*****************************************/
+
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
 
 app.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
     res.json({user: req.user});

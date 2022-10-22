@@ -1,3 +1,4 @@
+//Create mongoose schema for question
 const mongoose = require('mongoose');
 
 const QuestionSchema = new mongoose.Schema({

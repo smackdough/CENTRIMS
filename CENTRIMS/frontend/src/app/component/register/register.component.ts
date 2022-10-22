@@ -5,6 +5,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { QuestionsService } from 'src/app/services/questions.service';
 //import { FlashMessagesService } from 'angular2-flash-messages';
 
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
 
 @Component({
   selector: 'app-register',

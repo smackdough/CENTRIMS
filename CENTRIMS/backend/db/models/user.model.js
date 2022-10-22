@@ -1,3 +1,9 @@
+//Create mongoose schema for user
+
+//Reference:
+//MEAN Stack Front To Back
+//Author: "Traversy Media"
+
 const mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
@@ -33,31 +39,27 @@ var UserSchema = new mongoose.Schema({
 
     password: {
         type: String      
-    }
-    //saltSecret: String
+    }    
 });
 
-/*UserSchema.statics.hashPassword = function hashPassword(password){
-    return bcrypt.hashSync(password, 10);
-}
-
-UserSchema.methods.isValid = function(hashedpassword){
-    return bcrypt.compareSync(hashedpassword, this.password);
-}*/
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
 
+//get user by Id
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback);
 }
 
+//get user by username
 module.exports.getUserByUsername = function(username, callback){
     var query = {username: username};
     User.findOne(query, callback);
 }
 
+//add user
 module.exports.addUser = function(newUser, callback){
+    //hash password
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) =>{
             if(err){
@@ -69,6 +71,7 @@ module.exports.addUser = function(newUser, callback){
     });
 }
 
+//compare password to hash
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
     bcrypt.compare(candidatePassword, hash, (err, isMatch) =>{
         if(err){
